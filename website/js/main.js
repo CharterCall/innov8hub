@@ -1,4 +1,46 @@
+// Paste your deployed Google Apps Script URL here after setup
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzL1yjLml9UCbBy9FL8Zh6WcQ8vnWkF90-LQi_OhKwOkv0mBUYwVIx4AgTpyXJNi9kGQw/exec';
+
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Contact form → Google Sheet
+  const form = document.getElementById('consultationForm');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const successMsg = document.getElementById('formSuccess');
+      const errorMsg = document.getElementById('formError');
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+
+      const payload = {
+        name:     document.getElementById('name').value,
+        email:    document.getElementById('email').value,
+        business: document.getElementById('business').value,
+        message:  document.getElementById('message').value,
+      };
+
+      try {
+        await fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        successMsg.style.display = 'block';
+        form.reset();
+      } catch {
+        errorMsg.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Book Consultation';
+      }
+    });
+  }
   // Sticky Navbar
   const navbar = document.querySelector('.navbar');
   
