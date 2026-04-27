@@ -1,5 +1,5 @@
-// Paste your deployed Google Apps Script URL here after setup
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzL1yjLml9UCbBy9FL8Zh6WcQ8vnWkF90-LQi_OhKwOkv0mBUYwVIx4AgTpyXJNi9kGQw/exec';
+// Replace this with your n8n Production Webhook URL after importing the template
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzL1yjLml9UCbBy9FL8Zh6WcQ8vnWkF90-LQi_OhKwOkv0mBUYwVIx4AgTpyXJNi9kGQw/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -20,12 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const payload = {
         name:     document.getElementById('name').value,
         email:    document.getElementById('email').value,
+        mobile:   document.getElementById('mobile').value,
         business: document.getElementById('business').value,
         message:  document.getElementById('message').value,
       };
 
       try {
-        await fetch(SHEET_URL, {
+        await fetch(WEBHOOK_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
@@ -140,4 +141,96 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ROI Calculator Logic
+  const sliderInquiries = document.getElementById('slider-inquiries');
+  const sliderJob = document.getElementById('slider-job');
+  const valTotal = document.getElementById('val-total');
+
+  if (sliderInquiries && sliderJob && valTotal) {
+    const calculateROI = () => {
+      const inquiries = parseInt(sliderInquiries.value) || 0;
+      const jobValue = parseInt(sliderJob.value) || 0;
+      
+      // Assume 50% conversion rate of leads
+      const lostJobsPerWeek = inquiries * 0.5;
+      const lostRevenuePerWeek = lostJobsPerWeek * jobValue;
+      const lostRevenuePerMonth = lostRevenuePerWeek * 4;
+      
+      valTotal.textContent = '$' + lostRevenuePerMonth.toLocaleString() + ' /mo';
+    };
+
+    sliderInquiries.addEventListener('input', calculateROI);
+    sliderJob.addEventListener('input', calculateROI);
+    calculateROI(); // init
+  }
+
+  // SMS Demo Logic
+  const triggerSmsBtn = document.getElementById('trigger-sms-demo');
+  const chatWindow = document.getElementById('demo-chat-window');
+  const industryPicker = document.getElementById('demo-industry');
+
+  const scenarios = {
+    'plumber': {
+      formText: 'Web Inquiry: Leaking Pipe Under Sink',
+      aiReply: "Hi John! Mike's Plumbing here. Thanks for reaching out. We handle leaks all the time. Need someone out to take a look tomorrow morning?",
+      userReply: 'Yes please, 9 AM would be great. Thanks for getting back to me so quickly!',
+      actionText: 'Job secured without a phone call.'
+    },
+    'gardener': {
+      formText: 'Web Inquiry: Lawn Mowing Quote',
+      aiReply: 'Hi Sarah! This is Green Thumb Landscaping. We can definitely help with your lawn. Could you quickly text over a photo of the yard so we can give an accurate estimate?',
+      userReply: 'Sure, here is a photo. How much would it be?',
+      actionText: 'Lead engaged while you are busy.'
+    },
+    'cleaner': {
+      formText: 'Web Inquiry: End of Lease Clean',
+      aiReply: 'Hi Mike, Sparkle Clean here! We have availability this week for an end-of-lease clean. Does Thursday at 1 PM work for you?',
+      userReply: 'Thursday 1 PM is perfect. Please book it in.',
+      actionText: 'Appointment booked automatically.'
+    }
+  };
+
+  if (triggerSmsBtn && chatWindow) {
+    triggerSmsBtn.addEventListener('click', () => {
+      triggerSmsBtn.disabled = true;
+      triggerSmsBtn.textContent = 'Simulating...';
+      chatWindow.innerHTML = ''; // reset
+      
+      const industry = industryPicker ? industryPicker.value : 'plumber';
+      const currentScenario = scenarios[industry];
+      
+      // Step 1: Customer submits form
+      setTimeout(() => {
+        chatWindow.innerHTML += `
+          <div style="align-self: center; background: #E5E7EB; color: #4B5563; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; margin-bottom: 0.5rem; text-align: center;">
+            ${currentScenario.formText}
+          </div>
+        `;
+      }, 500);
+
+      // Step 2: Instant Automated SMS out
+      setTimeout(() => {
+        chatWindow.innerHTML += `
+          <div style="background: #E5E7EB; color: #111827; padding: 12px; border-radius: 12px 12px 12px 0; max-width: 85%; align-self: flex-start; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-size: 0.95rem;">
+            ${currentScenario.aiReply}
+          </div>
+          <div style="font-size: 0.7rem; color: #9CA3AF; margin-top: 4px; margin-left: 4px;">Sent instantly via Automation</div>
+        `;
+      }, 1500);
+
+      // Step 3: Customer replies
+      setTimeout(() => {
+        chatWindow.innerHTML += `
+          <div style="background: #2563EB; color: white; padding: 12px; border-radius: 12px 12px 0 12px; max-width: 85%; align-self: flex-end; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-size: 0.95rem; margin-top: 1rem;">
+            ${currentScenario.userReply}
+          </div>
+          <div style="font-size: 0.7rem; color: #9CA3AF; margin-top: 4px; text-align: right; margin-right: 4px;">${currentScenario.actionText}</div>
+        `;
+        triggerSmsBtn.textContent = 'Restart Demo';
+        triggerSmsBtn.disabled = false;
+      }, 3500);
+    });
+  }
+
 });
