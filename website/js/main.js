@@ -1,5 +1,5 @@
-// Replace this with your n8n Production Webhook URL after importing the template
-const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzL1yjLml9UCbBy9FL8Zh6WcQ8vnWkF90-LQi_OhKwOkv0mBUYwVIx4AgTpyXJNi9kGQw/exec';
+const GSHEET_URL = 'https://script.google.com/macros/s/AKfycbzL1yjLml9UCbBy9FL8Zh6WcQ8vnWkF90-LQi_OhKwOkv0mBUYwVIx4AgTpyXJNi9kGQw/exec';
+const N8N_URL    = 'https://n8n.chartercall.com.au/webhook/innov8hub-lead';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -26,12 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       try {
-        await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify(payload),
-        });
+        await Promise.all([
+          fetch(GSHEET_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify(payload),
+          }),
+          fetch(N8N_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }),
+        ]);
         successMsg.style.display = 'block';
         form.reset();
       } catch {
