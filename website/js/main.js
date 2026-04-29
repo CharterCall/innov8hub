@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name:     document.getElementById('name').value,
         email:    document.getElementById('email').value,
         mobile:   document.getElementById('mobile').value,
+        industry: document.getElementById('industry').value,
         business: document.getElementById('business').value,
         message:  document.getElementById('message').value,
       };
