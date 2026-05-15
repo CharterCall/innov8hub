@@ -724,14 +724,17 @@ textarea.form-control {
     display: block;
   }
 
-  .hero-title { font-size: 2.25rem; }
+  .hero-title { font-size: 2.25rem !important; }
+  h1 { font-size: 2.25rem !important; line-height: 1.2 !important; }
+  h2 { font-size: 1.75rem !important; line-height: 1.25 !important; }
+  section, header { padding-top: 3rem !important; padding-bottom: 3rem !important; }
   .hero-ctas { flex-direction: column; }
   .btn { width: 100%; }
-  .hero { padding: calc(var(--nav-height) + 2rem) 0 3rem; }
+  .hero { padding: calc(var(--nav-height) + 2rem) 0 3rem !important; }
   .container { padding: 0 1rem; }
   
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
+  .footer-top { grid-template-columns: 1fr !important; gap: 2rem; }
   .sticky-wrapper, .sticky-wrapper.full-bleed {
     height: auto;
     max-height: none;
