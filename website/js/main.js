@@ -247,23 +247,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // ROI Calculator Logic
   const sliderInquiries = document.getElementById('slider-inquiries');
   const sliderJob = document.getElementById('slider-job');
+  const sliderConversion = document.getElementById('slider-conversion');
   const valTotal = document.getElementById('val-total');
 
-  if (sliderInquiries && sliderJob && valTotal) {
+  if (sliderInquiries && sliderJob && sliderConversion && valTotal) {
     const calculateROI = () => {
       const inquiries = parseInt(sliderInquiries.value) || 0;
       const jobValue = parseInt(sliderJob.value) || 0;
+      const conversionRate = (parseInt(sliderConversion.value) || 0) / 100;
       
-      // Assume 50% conversion rate of leads
-      const lostJobsPerWeek = inquiries * 0.5;
+      const lostJobsPerWeek = inquiries * conversionRate;
       const lostRevenuePerWeek = lostJobsPerWeek * jobValue;
       const lostRevenuePerMonth = lostRevenuePerWeek * 4;
       
-      valTotal.textContent = '$' + lostRevenuePerMonth.toLocaleString() + ' /mo';
+      valTotal.textContent = '$' + lostRevenuePerMonth.toLocaleString();
     };
 
     sliderInquiries.addEventListener('input', calculateROI);
     sliderJob.addEventListener('input', calculateROI);
+    sliderConversion.addEventListener('input', calculateROI);
     calculateROI(); // init
   }
 

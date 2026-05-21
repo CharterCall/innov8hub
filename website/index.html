@@ -62,13 +62,29 @@
           </div>
 
           <div style="background: var(--bg-teal); padding: 1.5rem; border-radius: 8px; text-align: center; border: 1px solid var(--border-teal);">
-            <p style="margin-bottom: 0.5rem; font-size: 0.8rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px;">Estimated Lost Revenue</p>
-            <div id="val-total" style="font-size: 3rem; font-weight: 800; color: var(--danger); margin-bottom: 0.5rem; font-family: monospace; letter-spacing: -1px;">$10,000 /mo</div>
-            <p style="font-size: 0.9rem; color: var(--text-light); margin: 0 0 0.5rem;">Our automated systems recover this for a fraction of the cost.</p>
-            <div style="font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 0.5rem; margin-top: 0.5rem; text-align: left;">
-              <p style="margin-bottom: 4px; color: var(--text-light);"><strong>Assumptions:</strong></p>
+
+            <!-- Framing: loss, not price -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; margin-bottom: 0.75rem;">
+              <i class="fa-solid fa-triangle-exclamation" style="color: #F59E0B; font-size: 0.85rem;"></i>
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.6px;">Revenue slipping away each month</span>
+            </div>
+
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.4rem;">Based on your inputs, you're currently leaving approximately</p>
+            <div id="val-total" style="font-size: 2.75rem; font-weight: 800; color: var(--danger); margin-bottom: 0.25rem; font-family: monospace; letter-spacing: -1px;">$10,000</div>
+            <p style="font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin-bottom: 1.25rem;">on the table every month.</p>
+
+            <!-- Clear "not our fee" callout -->
+            <div style="background: #FFFFFF; border-radius: 6px; padding: 0.85rem 1rem; border: 1px solid var(--border); margin-bottom: 1rem;">
+              <p style="margin: 0; font-size: 0.88rem; color: var(--text-main); line-height: 1.5;">
+                <strong style="color: var(--teal);">This is what you're losing — not what we charge.</strong><br>
+                Our solutions start from <strong>$99/mo</strong> to help you recover it.
+              </p>
+            </div>
+
+            <div style="font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 0.75rem; text-align: left;">
+              <p style="margin-bottom: 4px; color: var(--text-light);"><strong>How this is calculated:</strong></p>
               <ul style="padding-left: 1rem; margin-bottom: 8px; list-style-type: disc; color: var(--text-light);">
-                <li>Lost monthly revenue = Missed replies × Conversion Rate × Job Value × 4 weeks/mo</li>
+                <li>Missed replies × Conversion Rate × Job Value × 4 weeks/mo</li>
               </ul>
               <i class="fa-solid fa-circle-info" style="color: var(--teal);"></i> Forbes reports that 85% of missed callers won't call back, going to a competitor instead.
             </div>
