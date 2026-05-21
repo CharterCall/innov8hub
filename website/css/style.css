@@ -781,11 +781,17 @@ textarea.form-control { min-height: 150px; resize: vertical; }
   h2 { font-size: 1.65rem !important; line-height: 1.25 !important; }
   h3 { font-size: 1.25rem; }
 
-  /* Section padding */
-  section, header { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-  .hero { padding: calc(var(--nav-height) + 2rem) 0 2.5rem !important; }
-  .page-header { padding: calc(var(--nav-height) + 2.5rem) 0 2.5rem; }
-  .container { padding: 0 1.1rem; }
+  /* Section padding — sections only, never headers (handled separately below) */
+  section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+
+  /* Hero: clear the fixed navbar + comfortable breathing room */
+  .hero { padding: calc(var(--nav-height) + 3rem) 0 3rem !important; }
+
+  /* Inner page headers: must clear the fixed navbar — keep !important to beat element rules */
+  .page-header { padding: calc(var(--nav-height) + 3rem) 0 3rem !important; }
+
+  /* Container: 1.5rem (24px) side padding keeps text away from screen edges */
+  .container { padding: 0 1.5rem; }
 
   /* Grids → single column */
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
