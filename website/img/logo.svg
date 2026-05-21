@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" fill="none">
+  <defs>
+    <!-- Main cyan-to-blue gradient along the ribbon -->
+    <linearGradient id="ribbonGrad" x1="50" y1="5" x2="50" y2="115" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#00F2FF"/>
+      <stop offset="30%"  stop-color="#00AAFF"/>
+      <stop offset="65%"  stop-color="#0066EE"/>
+      <stop offset="100%" stop-color="#0033BB"/>
+    </linearGradient>
+    <!-- Brighter highlight gradient for inner edge -->
+    <linearGradient id="highlightGrad" x1="50" y1="5" x2="50" y2="115" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#CCFAFF" stop-opacity="0.95"/>
+      <stop offset="40%"  stop-color="#88DDFF" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#4499FF" stop-opacity="0.3"/>
+    </linearGradient>
+    <!-- Soft outer aura (largest diffuse glow) -->
+    <filter id="aura" x="-120%" y="-80%" width="340%" height="260%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <!-- Medium glow (halo around the ribbon) -->
+    <filter id="halo" x="-70%" y="-50%" width="240%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Tight glow for the inner highlight -->
+    <filter id="innerGlow" x="-40%" y="-30%" width="180%" height="160%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Ground reflection blur -->
+    <filter id="groundBlur">
+      <feGaussianBlur stdDeviation="3.5"/>
+    </filter>
+  </defs>
+
+  <!-- === LAYER 1: Outer diffuse aura === -->
+  <path d="M50,63 C17,56 17,9 50,9 C83,9 83,56 50,63"
+        stroke="#00CCFF" stroke-width="26" filter="url(#aura)" opacity="0.55"/>
+  <path d="M50,57 C83,64 83,111 50,111 C17,111 17,64 50,57"
+        stroke="#0055EE" stroke-width="26" filter="url(#aura)" opacity="0.4"/>
+
+  <!-- === LAYER 2: Ground reflection === -->
+  <ellipse cx="50" cy="117" rx="17" ry="3.5" fill="#0066FF" filter="url(#groundBlur)" opacity="0.5"/>
+
+  <!-- === LAYER 3: Bottom loop body (rear — drawn first) === -->
+  <path d="M50,57 C83,64 83,111 50,111 C17,111 17,64 50,57"
+        stroke="url(#ribbonGrad)" stroke-width="8.5" stroke-linecap="round"/>
+  <!-- Bottom loop inner highlight -->
+  <path d="M50,57 C83,64 83,111 50,111 C17,111 17,64 50,57"
+        stroke="url(#highlightGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.4"
+        filter="url(#innerGlow)"/>
+
+  <!-- === LAYER 4: Top loop body (front — drawn on top for crossing illusion) === -->
+  <path d="M50,63 C17,56 17,9 50,9 C83,9 83,56 50,63"
+        stroke="url(#ribbonGrad)" stroke-width="9.5" stroke-linecap="round"
+        filter="url(#halo)"/>
+  <!-- Top loop inner highlight (brightest element, creates the tube/ribbon 3D look) -->
+  <path d="M50,63 C17,56 17,9 50,9 C83,9 83,56 50,63"
+        stroke="url(#highlightGrad)" stroke-width="3" stroke-linecap="round" opacity="0.7"
+        filter="url(#innerGlow)"/>
+</svg>

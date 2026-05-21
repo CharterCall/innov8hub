@@ -7,6 +7,8 @@
   <meta name="description" content="Innov8Hub builds simple, fully managed systems for trades and service businesses to recover lost leads and eliminate paperwork.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="img/logo-photo.png">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 </head>
 <body>
 
@@ -14,7 +16,8 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <i class="fa-solid fa-bolt logo-icon"></i> Innov8Hub
+        <img src="img/logo-photo.png" alt="Innov8Hub Logo" width="36" height="36" style="border-radius: 8px; object-fit: cover;">
+        <span style="font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">Innov<span class="brand-8">8</span>Hub</span>
       </a>
       <div class="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
@@ -22,45 +25,52 @@
         <a href="how-it-works.html" class="nav-link">How It Works</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="contact.html" class="btn btn-secondary" style="color:#111827; box-shadow: 0 4px 14px rgba(32, 206, 185, 0.4);">Book Consultation</a>
+        <a href="contact.html" class="btn btn-primary" style="padding: 0.6rem 1.25rem;">Book Consultation</a>
       </div>
       <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <header class="hero" style="background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-alt) 100%); padding: calc(var(--nav-height) + 4rem) 0 4rem; display: flex; align-items: center;">
-    <div class="container">
+  <header class="hero" style="padding: calc(var(--nav-height) + 4rem) 0 4rem; display: flex; align-items: center;">
+    <img src="img/logo-photo.png" alt="" class="hero-logo-bg" aria-hidden="true">
+    <div class="container" style="position: relative; z-index: 1;">
       <div class="grid grid-2" style="align-items: center; gap: 4rem;">
-        <div class="hero-content" style="text-align: left;">
-          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.15; margin-bottom: 1.5rem;">Scale your business without <br><span style="color: var(--secondary)">the administrative overhead.</span></h1>
-          <p class="hero-subtitle" style="margin-bottom: 2.5rem; font-size: 1.15rem; color: var(--text-light);">We turn complex problems into clear strategies and build fully managed systems for your business. Recover lost leads, eliminate late-night paperwork, and scale sustainably.</p>
+        <div class="hero-content" style="text-align: left; margin: 0;">
+          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.15; margin-bottom: 1.5rem;">Scale your business without <br><span style="color: var(--accent);">the administrative overhead.</span></h1>
+          <p style="margin-bottom: 2.5rem; font-size: 1.15rem; color: rgba(255,255,255,0.72);">We turn complex problems into clear strategies and build fully managed systems for your business. Recover lost leads, eliminate late-night paperwork, and scale sustainably.</p>
           <div class="hero-ctas" style="justify-content: flex-start; gap: 1rem;">
-            <a href="how-it-works.html" class="btn btn-primary">See How It Works</a>
-            <a href="#roi-calculator" class="btn btn-outline" style="border-color: var(--border);">Calculate Lost Revenue <i class="fa-solid fa-arrow-down"></i></a>
+            <a href="how-it-works.html" class="btn btn-teal">See How It Works</a>
           </div>
         </div>
-        
+
         <!-- ROI Calculator Widget -->
-        <div class="roi-widget" id="roi-calculator" style="background: white; padding: 2.5rem; border-radius: var(--radius); box-shadow: var(--shadow-lg); border: 1px solid var(--border); position: relative; z-index: 1;">
-          <h3 style="margin-bottom: 2rem; text-align: center; color: var(--primary); font-size: 1.3rem;"><i class="fa-solid fa-calculator" style="color: var(--secondary); margin-right: 8px;"></i> The Lost Revenue Calculator</h3>
-          
-          <div class="input-group" style="margin-bottom: 1.5rem;">
-            <label for="slider-inquiries" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Missed/Late Replies (per week)</label>
-            <input type="number" id="slider-inquiries" min="1" max="1000" value="5" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; outline: none; background: #F8FAFC; color: #111827;">
+        <div id="roi-calculator" style="background: #FFFFFF; padding: 2.5rem; border-radius: var(--radius); box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid rgba(0,168,187,0.2); position: relative; z-index: 1;">
+          <h3 style="margin-bottom: 2rem; text-align: center; color: var(--text-main); font-size: 1.3rem;"><i class="fa-solid fa-calculator" style="color: var(--teal); margin-right: 8px;"></i> The Lost Revenue Calculator</h3>
+
+          <div class="form-group">
+            <label for="slider-inquiries" class="form-label" style="color: var(--text-main);">Missed/Late Replies (per week)</label>
+            <input type="number" id="slider-inquiries" min="1" max="1000" value="5" class="form-control" style="font-size: 1.1rem;">
+          </div>
+          <div class="form-group">
+            <label for="slider-job" class="form-label" style="color: var(--text-main);">Average Job Value ($)</label>
+            <input type="number" id="slider-job" min="50" max="10000" step="50" value="500" class="form-control" style="font-size: 1.1rem;">
+          </div>
+          <div class="form-group" style="margin-bottom: 2.5rem;">
+            <label for="slider-conversion" class="form-label" style="color: var(--text-main);">Lead Conversion Rate (%)</label>
+            <input type="number" id="slider-conversion" min="1" max="100" step="1" value="50" class="form-control" style="font-size: 1.1rem;">
           </div>
 
-          <div class="input-group" style="margin-bottom: 2.5rem;">
-            <label for="slider-job" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Average Job Value ($)</label>
-            <input type="number" id="slider-job" min="50" max="10000" step="50" value="500" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; outline: none; background: #F8FAFC; color: #111827;">
-          </div>
-
-          <div style="background: rgba(32, 206, 185, 0.05); padding: 1.5rem; border-radius: 8px; text-align: center; border: 1px solid rgba(32, 206, 185, 0.3);">
-            <p style="margin-bottom: 0.5rem; font-size: 0.85rem; font-weight: 700; color: var(--text-light); text-transform: uppercase;">Estimated Lost Revenue</p>
-            <div id="val-total" style="font-size: 3rem; font-weight: 800; color: #EF4444; margin-bottom: 0.5rem; font-family: monospace; letter-spacing: -1px;">$10,000 /mo</div>
-            <p style="font-size: 0.9rem; color: var(--text-light); margin: 0; margin-bottom: 0.5rem;">Our automated systems recover this for a fraction of the cost.</p>
-            <div style="font-size: 0.75rem; color: #94A3B8; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.5rem; margin-top: 0.5rem;">
-              <i class="fa-solid fa-circle-info"></i> Forbes reports that 85% of missed callers won't call back, going to a competitor instead.
+          <div style="background: var(--bg-teal); padding: 1.5rem; border-radius: 8px; text-align: center; border: 1px solid var(--border-teal);">
+            <p style="margin-bottom: 0.5rem; font-size: 0.8rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px;">Estimated Lost Revenue</p>
+            <div id="val-total" style="font-size: 3rem; font-weight: 800; color: var(--danger); margin-bottom: 0.5rem; font-family: monospace; letter-spacing: -1px;">$10,000 /mo</div>
+            <p style="font-size: 0.9rem; color: var(--text-light); margin: 0 0 0.5rem;">Our automated systems recover this for a fraction of the cost.</p>
+            <div style="font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 0.5rem; margin-top: 0.5rem; text-align: left;">
+              <p style="margin-bottom: 4px; color: var(--text-light);"><strong>Assumptions:</strong></p>
+              <ul style="padding-left: 1rem; margin-bottom: 8px; list-style-type: disc; color: var(--text-light);">
+                <li>Lost monthly revenue = Missed replies × Conversion Rate × Job Value × 4 weeks/mo</li>
+              </ul>
+              <i class="fa-solid fa-circle-info" style="color: var(--teal);"></i> Forbes reports that 85% of missed callers won't call back, going to a competitor instead.
             </div>
           </div>
         </div>
@@ -71,53 +81,50 @@
   <!-- Problem Section -->
   <section class="container" style="padding: 5rem 0;">
     <div style="text-align: center; margin-bottom: 4rem;">
+      <div class="teal-divider"></div>
       <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Running a business shouldn't mean being chained to your phone.</h2>
-      <p style="font-size: 1.125rem; color: var(--text-light); max-width: 800px; margin: 0 auto;">You’re out on the tools or at a job site. A customer submits a website form. You can’t answer it immediately. The customer calls your competitor. Later that night, you're exhausted but still have to spend 2 hours doing quotes manually.</p>
+      <p style="font-size: 1.125rem; color: var(--text-light); max-width: 800px; margin: 0 auto;">You're out on the tools or at a job site. A customer submits a website form. You can't answer it immediately. The customer calls your competitor. Later that night, you're exhausted but still have to spend 2 hours doing quotes manually.</p>
     </div>
-    
+
     <div class="grid grid-3">
-      <div class="card" style="background: #111827; border: none; color: white;">
-        <div class="card-icon" style="background: rgba(239, 68, 68, 0.1); color: #EF4444;"><i class="fa-solid fa-hourglass-end"></i></div>
-        <h3 class="card-title" style="color: white;">Slow Replies = Lost Money</h3>
-        <p style="color: #94A3B8;">When you take hours to reply to an inquiry because you're busy, 50% of customers have already moved on.</p>
+      <div class="card card-dark">
+        <div class="card-icon" style="background: rgba(239,68,68,0.15); color: var(--danger); border-color: rgba(239,68,68,0.3);"><i class="fa-solid fa-hourglass-end"></i></div>
+        <h3 class="card-title">Slow Replies = Lost Money</h3>
+        <p style="color: rgba(255,255,255,0.65);">When you take hours to reply to an inquiry because you're busy, 50% of customers have already moved on.</p>
       </div>
-      <div class="card" style="background: #111827; border: none; color: white;">
-        <div class="card-icon" style="background: rgba(245, 166, 35, 0.1); color: #F5A623;"><i class="fa-solid fa-file-invoice"></i></div>
-        <h3 class="card-title" style="color: white;">Night-Time Admin</h3>
-        <p style="color: #94A3B8;">Copying data from emails to spreadsheets to your CRM manually steals your evenings and weekends.</p>
+      <div class="card card-dark">
+        <div class="card-icon" style="background: rgba(0,168,187,0.15); color: var(--accent); border-color: rgba(0,168,187,0.3);"><i class="fa-solid fa-file-invoice"></i></div>
+        <h3 class="card-title">Night-Time Admin</h3>
+        <p style="color: rgba(255,255,255,0.65);">Copying data from emails to spreadsheets to your CRM manually steals your evenings and weekends.</p>
       </div>
-      <div class="card" style="background: #111827; border: none; color: white;">
-        <div class="card-icon" style="background: rgba(16, 185, 129, 0.1); color: #10B981;"><i class="fa-solid fa-face-frown"></i></div>
-        <h3 class="card-title" style="color: white;">Friction for Customers</h3>
-        <p style="color: #94A3B8;">Customers expect instant answers. Without systems, getting booked in feels frustrating for them.</p>
+      <div class="card card-dark">
+        <div class="card-icon" style="background: rgba(0,114,229,0.15); color: #60B8FF; border-color: rgba(0,114,229,0.3);"><i class="fa-solid fa-face-frown"></i></div>
+        <h3 class="card-title">Friction for Customers</h3>
+        <p style="color: rgba(255,255,255,0.65);">Customers expect instant answers. Without systems, getting booked in feels frustrating for them.</p>
       </div>
     </div>
   </section>
 
-  <!-- Interactive SMS Highlight -->
+  <!-- SMS Demo Section -->
   <section class="bg-alt" style="padding: 6rem 0; overflow: hidden;">
     <div class="container">
       <div class="grid grid-2" style="align-items: center; gap: 4rem;">
         <div style="position: relative; display: flex; justify-content: center;">
           <!-- Mobile Phone Mockup -->
-          <div style="width: 100%; max-width: 320px; height: 610px; background: white; border-radius: 40px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); border: 8px solid #111827; position: relative; overflow: hidden; display: flex; flex-direction: column; margin: 0 auto;">
-            <div style="background: #F3F4F6; padding: 10px; text-align: center; border-bottom: 1px solid #E5E7EB; font-weight: 600; font-size: 0.9rem;">
+          <div style="width: 100%; max-width: 320px; height: 610px; background: #F3F4F6; border-radius: 40px; box-shadow: var(--shadow-lg), 0 0 0 1px var(--border); border: 8px solid #1F2937; position: relative; overflow: hidden; display: flex; flex-direction: column; margin: 0 auto;">
+            <div style="background: #1F2937; padding: 10px; text-align: center; font-weight: 600; font-size: 0.9rem; color: #FFFFFF;">
               New Notification
             </div>
-            
-            <div style="padding: 10px; background: white; border-bottom: 1px solid #E5E7EB; display: flex; flex-direction: column; gap: 5px;">
+            <div style="padding: 10px; background: #F9FAFB; border-bottom: 1px solid #E5E7EB; display: flex; flex-direction: column; gap: 5px;">
               <label for="demo-industry" style="font-size: 0.75rem; font-weight: 600; color: var(--text-light);">Select Industry Scenario:</label>
-              <select id="demo-industry" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; outline: none; background: #F8FAFC;">
+              <select id="demo-industry" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; outline: none; background: #FFFFFF; color: var(--text-main);">
                 <option value="plumber">Plumber (Emergency Leak)</option>
                 <option value="gardener">Gardener (Quote Request)</option>
                 <option value="cleaner">Cleaner (Booking Appt)</option>
               </select>
             </div>
-
-            <div id="demo-chat-window" style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; background: #F9FAFB; overflow-y: auto;">
-              <!-- Chat will appear here -->
-            </div>
-            <div style="padding: 1rem; background: white; border-top: 1px solid #E5E7EB;">
+            <div id="demo-chat-window" style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; gap: 1rem; background: #F9FAFB; overflow-y: auto;"></div>
+            <div style="padding: 1rem; background: #FFFFFF; border-top: 1px solid #E5E7EB;">
               <button id="trigger-sms-demo" class="btn btn-secondary" style="width: 100%; font-size: 1rem; box-shadow: none;">Simulate New Lead <i class="fa-solid fa-paper-plane"></i></button>
             </div>
           </div>
@@ -125,129 +132,133 @@
 
         <div>
           <span class="feature-badge">Instant Follow-Ups</span>
-          <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Meet your new 24/7 team.</h2>
-          <p style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 2rem;">Innov8Hub builds quietly operating systems that handle the busywork for you. Never let a customer slip through the cracks again.</p>
-          
+          <h2 style="font-size: 2.75rem; margin-bottom: 1.5rem;">Meet your new 24/7 team.</h2>
+          <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;"><span class="brand-name">Innov<span class="brand-8">8</span>Hub</span> builds quietly operating systems that handle the busywork for you. Never let a customer slip through the cracks again.</p>
+
           <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem;">
             <li style="display: flex; gap: 1rem; align-items: flex-start;">
-              <i class="fa-solid fa-bolt" style="color: var(--secondary); font-size: 1.25rem; margin-top: 3px;"></i>
+              <i class="fa-solid fa-bolt" style="color: var(--teal); font-size: 1.25rem; margin-top: 3px;"></i>
               <div>
-                <strong style="font-size: 1.1rem; display: block; margin-bottom: 0.25rem;">Beat Your Competitors</strong>
+                <strong style="font-size: 1.05rem; display: block; margin-bottom: 0.25rem;">Beat Your Competitors</strong>
                 <span style="color: var(--text-light);">Automatically send friendly text messages to leads the very second they inquire.</span>
               </div>
             </li>
             <li style="display: flex; gap: 1rem; align-items: flex-start;">
-              <i class="fa-solid fa-calendar-check" style="color: var(--secondary); font-size: 1.25rem; margin-top: 3px;"></i>
+              <i class="fa-solid fa-calendar-check" style="color: var(--teal); font-size: 1.25rem; margin-top: 3px;"></i>
               <div>
-                <strong style="font-size: 1.1rem; display: block; margin-bottom: 0.25rem;">Automated Scheduling</strong>
+                <strong style="font-size: 1.05rem; display: block; margin-bottom: 0.25rem;">Automated Scheduling</strong>
                 <span style="color: var(--text-light);">Stop playing phone tag. Let customers safely book straight into your live calendar.</span>
               </div>
             </li>
             <li style="display: flex; gap: 1rem; align-items: flex-start;">
-              <i class="fa-solid fa-mobile-screen" style="color: var(--secondary); font-size: 1.25rem; margin-top: 3px;"></i>
+              <i class="fa-solid fa-mobile-screen" style="color: var(--teal); font-size: 1.25rem; margin-top: 3px;"></i>
               <div>
-                <strong style="font-size: 1.1rem; display: block; margin-bottom: 0.25rem;">Zero Admin Work</strong>
+                <strong style="font-size: 1.05rem; display: block; margin-bottom: 0.25rem;">Zero Admin Work</strong>
                 <span style="color: var(--text-light);">Client details are securely pushed straight into your phone and CRM so you never have to search.</span>
               </div>
             </li>
           </ul>
         </div>
       </div>
+
+      <!-- Disclosure -->
+      <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; align-items: flex-start; gap: 0.75rem;">
+        <i class="fa-solid fa-circle-info" style="color: var(--teal); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0;"></i>
+        <p style="margin: 0; font-size: 0.85rem; color: var(--text-light); font-style: italic; line-height: 1.6;">
+          <strong style="font-style: normal; color: var(--text-main);">Example only.</strong> The interaction above is a demonstration of the type of automated systems <span class="brand-name">Innov<span class="brand-8">8</span>Hub</span> builds to bring real value to your business. Messaging, timing, and integrations are fully customised to match your brand and operations.
+        </p>
+      </div>
+
     </div>
   </section>
 
   <!-- How It Works -->
   <section class="container" style="padding: 6rem 0;">
     <div class="text-center" style="margin-bottom: 4rem;">
+      <div class="teal-divider"></div>
       <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">We do the heavy lifting. You reap the rewards.</h2>
       <p style="color: var(--text-light); font-size: 1.1rem;">A simple, fully managed process to lock in your operations.</p>
     </div>
-    
+
     <div class="grid grid-3">
-      <div class="card text-center" style="position: relative;">
-        <div style="width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; margin: 0 auto 1.5rem;">1</div>
-        <h3>Strategy & Roadmapping</h3>
+      <div class="card text-center">
+        <div class="step-badge" style="margin: 0 auto 1.5rem;">1</div>
+        <h3>Strategy &amp; Roadmapping</h3>
         <p style="color: var(--text-light);">We'll jump on a quick call, uncover root causes of your inefficiencies, and design a scalable action plan.</p>
       </div>
-      <div class="card text-center" style="position: relative;">
-        <div style="width: 50px; height: 50px; background: var(--secondary); color: #111827; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; margin: 0 auto 1.5rem;">2</div>
+      <div class="card text-center" style="border-color: var(--border-teal);">
+        <div class="step-badge" style="margin: 0 auto 1.5rem; background: linear-gradient(135deg, var(--teal), var(--accent));">2</div>
         <h3>We Build It For You</h3>
         <p style="color: var(--text-light);">You don't need to learn new software. We connect our system into the calendar and email you already use.</p>
       </div>
-      <div class="card text-center" style="position: relative;">
-        <div style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; margin: 0 auto 1.5rem;">3</div>
+      <div class="card text-center">
+        <div class="step-badge" style="margin: 0 auto 1.5rem;">3</div>
         <h3>Profit on Autopilot</h3>
         <p style="color: var(--text-light);">We flip the switch. Stop manually chasing leads, and start reclaiming your precious time.</p>
       </div>
     </div>
   </section>
 
-  <!-- Before & After Visual (Workflow) -->
-  <section style="background: #111827; color: white; padding: 6rem 0;">
+  <!-- Before & After Visual -->
+  <section style="background: var(--bg-teal); padding: 6rem 0; position: relative; overflow: hidden;">
     <div class="container">
-      <h2 class="text-center" style="color: white; margin-bottom: 4rem; font-size: 2.5rem;">The difference is night and day.</h2>
-      
+      <div class="teal-divider"></div>
+      <h2 class="text-center" style="margin-bottom: 4rem; font-size: 2.5rem;">The difference is night and day.</h2>
+
       <div class="grid grid-2" style="gap: 3rem;">
         <!-- BEFORE -->
-        <div style="background: rgba(255,255,255,0.05); padding: 3rem; border-radius: var(--radius); border: 1px solid rgba(239, 68, 68, 0.3);">
+        <div class="before-after-tile" style="background: #FFFFFF; padding: 3rem; border-radius: var(--radius); border: 1px solid rgba(239,68,68,0.2); box-shadow: var(--shadow-sm);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-            <h3 style="color: #EF4444; margin: 0;"><i class="fa-solid fa-xmark"></i> The Old Way</h3>
-            <span style="background: rgba(239, 68, 68, 0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; color: #EF4444;">Slow & Manual</span>
+            <h3 style="color: var(--danger); margin: 0;"><i class="fa-solid fa-xmark"></i> The Old Way</h3>
+            <span style="background: rgba(239,68,68,0.08); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--danger); border: 1px solid rgba(239,68,68,0.2);">Slow &amp; Manual</span>
           </div>
-          
           <div style="display: flex; flex-direction: column; gap: 1.5rem; position: relative;">
-            <div style="border-left: 2px dashed rgba(239, 68, 68, 0.3); position: absolute; top: 20px; bottom: 20px; left: 19px;"></div>
-            
+            <div style="border-left: 2px dashed rgba(239,68,68,0.3); position: absolute; top: 20px; bottom: 20px; left: 19px;"></div>
             <div style="display: flex; gap: 1rem; align-items: center; z-index: 1;">
-              <div style="width: 40px; height: 40px; background: #1E293B; border-radius: 50%; border: 2px solid #EF4444; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-desktop"></i></div>
-              <p style="margin: 0; color: #94A3B8;">Web Inquiry Submitted</p>
+              <div style="width: 40px; height: 40px; background: #F9FAFB; border-radius: 50%; border: 2px solid var(--danger); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-desktop" style="color: var(--text-light);"></i></div>
+              <p style="margin: 0; color: var(--text-light);">Web Inquiry Submitted</p>
             </div>
-            
             <div style="display: flex; gap: 1rem; align-items: center; z-index: 1;">
-              <div style="width: 40px; height: 40px; background: #1E293B; border-radius: 50%; border: 2px solid #EF4444; display: flex; align-items: center; justify-content: center; color: #F5A623;"><i class="fa-solid fa-clock"></i></div>
-              <p style="margin: 0; color: #94A3B8;">Sits in Inbox for 6 Hours</p>
+              <div style="width: 40px; height: 40px; background: #F9FAFB; border-radius: 50%; border: 2px solid var(--danger); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-clock" style="color: var(--secondary);"></i></div>
+              <p style="margin: 0; color: var(--text-light);">Sits in Inbox for 6 Hours</p>
             </div>
-            
             <div style="display: flex; gap: 1rem; align-items: center; z-index: 1;">
-              <div style="width: 40px; height: 40px; background: #1E293B; border-radius: 50%; border: 2px solid #EF4444; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-keyboard"></i></div>
-              <p style="margin: 0; color: #94A3B8;">You manually reply at 9 PM</p>
+              <div style="width: 40px; height: 40px; background: #F9FAFB; border-radius: 50%; border: 2px solid var(--danger); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-keyboard" style="color: var(--text-light);"></i></div>
+              <p style="margin: 0; color: var(--text-light);">You manually reply at 9 PM</p>
             </div>
-            
             <div style="display: flex; gap: 1rem; align-items: center; z-index: 1;">
-              <div style="width: 40px; height: 40px; background: rgba(239, 68, 68, 0.2); border-radius: 50%; border: 2px solid #EF4444; display: flex; align-items: center; justify-content: center; color: #EF4444;"><i class="fa-solid fa-skull"></i></div>
-              <p style="margin: 0; font-weight: 600; color: white;">Customer already hired competitor.</p>
+              <div style="width: 40px; height: 40px; background: rgba(239,68,68,0.08); border-radius: 50%; border: 2px solid var(--danger); display: flex; align-items: center; justify-content: center; color: var(--danger);"><i class="fa-solid fa-skull"></i></div>
+              <p style="margin: 0; font-weight: 600; color: var(--text-main);">Customer already hired competitor.</p>
             </div>
           </div>
         </div>
 
         <!-- AFTER -->
-        <div style="background: rgba(32, 206, 185, 0.05); padding: 3rem; border-radius: var(--radius); border: 1px solid rgba(32, 206, 185, 0.3);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-            <h3 style="color: var(--secondary); margin: 0;"><i class="fa-solid fa-check"></i> The Innov8Hub Way</h3>
-            <span style="background: rgba(32, 206, 185, 0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--secondary);">Instant & Automated</span>
+        <div class="before-after-tile" style="background: linear-gradient(145deg, var(--primary) 0%, #0D2A48 100%); padding: 3rem; border-radius: var(--radius); border: 1px solid rgba(0,168,187,0.35); box-shadow: 0 12px 40px rgba(0,168,187,0.25), 0 0 0 1px rgba(0,196,212,0.15);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 0.75rem;">
+            <h3 style="color: #FFFFFF; margin: 0; font-size: 1.2rem;">
+              <i class="fa-solid fa-check" style="color: var(--accent); margin-right: 6px;"></i>
+              The <span style="font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #FFFFFF;">Innov<span style="color: var(--accent);">8</span>Hub</span> Way
+            </h3>
+            <span style="background: rgba(0,196,212,0.18); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; color: var(--accent); border: 1px solid rgba(0,196,212,0.4); white-space: nowrap;">Instant &amp; Automated</span>
           </div>
-          
           <div style="display: flex; flex-direction: column; gap: 1.5rem; position: relative;">
-            <div style="border-left: 2px solid var(--secondary); position: absolute; top: 20px; bottom: 20px; left: 19px;"></div>
-            
+            <div style="border-left: 2px solid var(--teal); position: absolute; top: 20px; bottom: 20px; left: 19px; box-shadow: 0 0 8px rgba(0,168,187,0.5);"></div>
             <div style="display: flex; gap: 1rem; align-items: center; z-index: 1;">
-              <div style="width: 40px; height: 40px; background: #1E293B; border-radius: 50%; border: 2px solid var(--secondary); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-desktop"></i></div>
-              <p style="margin: 0; color: #94A3B8;">Web Inquiry Submitted</p>
+              <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.08); border-radius: 50%; border: 2px solid var(--teal); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-desktop" style="color: rgba(255,255,255,0.6);"></i></div>
+              <p style="margin: 0; color: rgba(255,255,255,0.65);">Web Inquiry Submitted</p>
             </div>
-            
             <div style="display: flex; gap: 1rem; align-items: center; z-index: 1;">
-              <div style="width: 40px; height: 40px; background: var(--secondary); border-radius: 50%; border: 2px solid var(--secondary); display: flex; align-items: center; justify-content: center; color: #111827;"><i class="fa-solid fa-paper-plane"></i></div>
-              <p style="margin: 0; color: white; font-weight: 600;">Instant Custom SMS Sent (0 mins)</p>
+              <div style="width: 40px; height: 40px; background: linear-gradient(135deg,var(--secondary),var(--teal)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #FFFFFF; box-shadow: 0 4px 12px rgba(0,168,187,0.4);"><i class="fa-solid fa-paper-plane"></i></div>
+              <p style="margin: 0; color: #FFFFFF; font-weight: 600;">Instant Custom SMS Sent (0 mins)</p>
             </div>
-            
             <div style="display: flex; gap: 1rem; align-items: center; z-index: 1;">
-              <div style="width: 40px; height: 40px; background: #1E293B; border-radius: 50%; border: 2px solid var(--secondary); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-database"></i></div>
-              <p style="margin: 0; color: #94A3B8;">Details safely pushed to CRM</p>
+              <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.08); border-radius: 50%; border: 2px solid var(--teal); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-database" style="color: rgba(255,255,255,0.6);"></i></div>
+              <p style="margin: 0; color: rgba(255,255,255,0.65);">Details safely pushed to CRM</p>
             </div>
-            
             <div style="display: flex; gap: 1rem; align-items: center; z-index: 1;">
-              <div style="width: 40px; height: 40px; background: rgba(32, 206, 185, 0.2); border-radius: 50%; border: 2px solid var(--secondary); display: flex; align-items: center; justify-content: center; color: var(--secondary);"><i class="fa-solid fa-trophy"></i></div>
-              <p style="margin: 0; font-weight: 600; color: white;">Job secured. You get a text alert.</p>
+              <div style="width: 40px; height: 40px; background: rgba(0,196,212,0.2); border-radius: 50%; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; color: var(--accent);"><i class="fa-solid fa-trophy"></i></div>
+              <p style="margin: 0; font-weight: 700; color: #FFFFFF; font-size: 1.05rem;">Job secured. You get a text alert.</p>
             </div>
           </div>
         </div>
@@ -257,54 +268,56 @@
 
   <!-- Use Cases -->
   <section class="container" style="padding: 6rem 0;">
-    <h2 class="text-center" style="margin-bottom: 3rem;">Built for businesses that get their hands dirty.</h2>
+    <div class="text-center" style="margin-bottom: 3rem;">
+      <div class="teal-divider"></div>
+      <h2>Built for businesses that get their hands dirty.</h2>
+    </div>
     <div class="grid grid-3">
-      <div style="border-top: 3px solid var(--secondary); padding-top: 1.5rem;">
-        <h3 style="font-size: 1.25rem;"><i class="fa-solid fa-hammer" style="color: var(--text-light); margin-right: 8px;"></i> Trades & Maintenance</h3>
-        <p style="color: var(--text-light); font-size: 0.95rem;"><strong>Problem:</strong> Under a house, can't reply to a quote request.<br><br><strong>Result:</strong> An automated SMS answers the customer instantly and secures the lead while you work.</p>
+      <div class="card card-teal-left" style="align-items: flex-start; text-align: left;">
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;"><i class="fa-solid fa-hammer" style="color: var(--teal); margin-right: 8px;"></i> Trades &amp; Maintenance</h3>
+        <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;"><strong style="color: var(--text-main);">Problem:</strong> Under a house, can't reply to a quote request.<br><br><strong style="color: var(--text-main);">Result:</strong> An automated SMS answers the customer instantly and secures the lead while you work.</p>
       </div>
-      <div style="border-top: 3px solid var(--accent); padding-top: 1.5rem;">
-        <h3 style="font-size: 1.25rem;"><i class="fa-solid fa-leaf" style="color: var(--text-light); margin-right: 8px;"></i> Gardeners & Landscapers</h3>
-        <p style="color: var(--text-light); font-size: 0.95rem;"><strong>Problem:</strong> Hands are muddy, machinery is loud.<br><br><strong>Result:</strong> Lead capture forms sync directly to your CRM without any manual typing or messy paperwork.</p>
+      <div class="card card-teal-left" style="align-items: flex-start; text-align: left; border-left-color: var(--accent);">
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;"><i class="fa-solid fa-leaf" style="color: var(--accent); margin-right: 8px;"></i> Gardeners &amp; Landscapers</h3>
+        <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;"><strong style="color: var(--text-main);">Problem:</strong> Hands are muddy, machinery is loud.<br><br><strong style="color: var(--text-main);">Result:</strong> Lead capture forms sync directly to your CRM without any manual typing or messy paperwork.</p>
       </div>
-      <div style="border-top: 3px solid var(--primary); padding-top: 1.5rem;">
-        <h3 style="font-size: 1.25rem;"><i class="fa-solid fa-broom" style="color: var(--text-light); margin-right: 8px;"></i> Cleaners & Home Services</h3>
-        <p style="color: var(--text-light); font-size: 0.95rem;"><strong>Problem:</strong> Managing 15 different chaotic schedules.<br><br><strong>Result:</strong> Leads are automatically qualified and slotted into the correct calendar without you lifting a finger.</p>
+      <div class="card card-teal-left" style="align-items: flex-start; text-align: left; border-left-color: var(--secondary);">
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;"><i class="fa-solid fa-broom" style="color: var(--secondary); margin-right: 8px;"></i> Cleaners &amp; Home Services</h3>
+        <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;"><strong style="color: var(--text-main);">Problem:</strong> Managing 15 different chaotic schedules.<br><br><strong style="color: var(--text-main);">Result:</strong> Leads are automatically qualified and slotted into the correct calendar without you lifting a finger.</p>
       </div>
     </div>
   </section>
 
-  <!-- Social Proof & Pricing Anchor -->
-  <section class="bg-alt" style="padding: 5rem 0;">
+  <!-- Stats -->
+  <section style="background: var(--primary); padding: 5rem 0;">
     <div class="container text-center">
-      <h2 style="margin-bottom: 3rem;">The hidden cost of manual operations.</h2>
-      <div class="grid grid-2" style="margin-bottom: 4rem;">
-        <div class="card" style="box-shadow: var(--shadow-md);">
-          <div style="font-size: 3rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.5rem;">62%</div>
-          <p style="font-weight: 600; color: var(--primary);">of small business calls go unanswered</p>
-          <p style="color: var(--text-light); font-size: 0.9rem;">When you're busy on the floor or out in the field, calls inevitably slip through the cracks.</p>
+      <div class="teal-divider"></div>
+      <h2 style="color: #FFFFFF; margin-bottom: 3rem;">The hidden cost of manual operations.</h2>
+      <div class="grid grid-2" style="margin-bottom: 0;">
+        <div class="card" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(0,168,187,0.25);">
+          <div class="stat-number" style="margin-bottom: 0.5rem;">62%</div>
+          <p style="font-weight: 600; color: var(--accent);">of small business calls go unanswered</p>
+          <p style="color: rgba(255,255,255,0.55); font-size: 0.9rem;">When you're busy on the floor or out in the field, calls inevitably slip through the cracks.</p>
         </div>
-        <div class="card" style="box-shadow: var(--shadow-md);">
-          <div style="font-size: 3rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">85%</div>
-          <p style="font-weight: 600; color: var(--primary);">of missed callers won't call back</p>
-          <p style="color: var(--text-light); font-size: 0.9rem;">According to Forbes, those callers immediately look for a competitor instead, resulting in massive lost revenue.</p>
+        <div class="card" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(0,168,187,0.25);">
+          <div class="stat-number" style="margin-bottom: 0.5rem;">85%</div>
+          <p style="font-weight: 600; color: var(--accent);">of missed callers won't call back</p>
+          <p style="color: rgba(255,255,255,0.55); font-size: 0.9rem;">According to Forbes, those callers immediately look for a competitor instead, resulting in massive lost revenue.</p>
         </div>
-      </div>
-
-      <div style="background: var(--bg-main); border: 2px solid var(--border); padding: 3rem; border-radius: var(--radius); max-width: 800px; margin: 0 auto; box-shadow: var(--shadow-lg);">
-        <span style="background: rgba(32, 206, 185, 0.1); color: var(--secondary); padding: 4px 12px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">Transparent Pricing</span>
-        <h3 style="font-size: 2rem; margin-top: 1rem; margin-bottom: 1rem;">A system that actually pays for itself.</h3>
-        <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;">Setup starts at a <strong>$499 one-time fee</strong>, plus an affordable <strong>$99/month</strong> maintenance to keep your business running smoothly. It makes you more money than it costs by securing just <em>one</em> extra job.</p>
-        <a href="pricing.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">View Full Pricing Structure</a>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
   <section class="container text-center" style="padding: 6rem 1rem;">
-    <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Ready to get your evenings back?</h2>
-    <p style="font-size: 1.25rem; color: var(--text-light); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Let's look at your current setup and find the "leaks" where you're losing money to manual admin. The consultation is 100% free.</p>
-    <a href="contact.html" class="btn btn-secondary" style="font-size: 1.125rem; padding: 1rem 2.5rem; box-shadow: 0 10px 25px rgba(32, 206, 185, 0.4);">Claim Your Free Automation Plan</a>
+    <div class="cta-section">
+      <div class="cta-logo-mark">
+        <img src="img/logo-photo.png" alt="Innov8Hub" width="64" height="64" style="border-radius: 12px; object-fit: cover;">
+      </div>
+      <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Ready to get your evenings back?</h2>
+      <p style="font-size: 1.2rem; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Let's look at your current setup and find the "leaks" where you're losing money to manual admin. The consultation is 100% free.</p>
+      <a href="contact.html" class="btn btn-teal" style="font-size: 1.125rem; padding: 1rem 2.5rem;">Claim Your Free Automation Plan</a>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -312,8 +325,9 @@
     <div class="container">
       <div class="footer-top">
         <div>
-          <a href="index.html" class="logo" style="color: white; font-size: 1.75rem;">
-            <i class="fa-solid fa-bolt" style="color: var(--secondary);"></i> Innov8Hub
+          <a href="index.html" class="logo" style="font-size: 1.75rem; margin-bottom: 1rem; display: inline-flex;">
+            <img src="img/logo-photo.png" alt="Innov8Hub Logo" width="40" height="40" style="border-radius: 8px; object-fit: cover;">
+            <span style="font-weight: 900; letter-spacing: -1px; text-transform: uppercase; color: #FFFFFF;">Innov<span class="brand-8">8</span>Hub</span>
           </a>
           <p class="footer-desc">Making business automation practical, accessible, and simple for small service businesses in Australia.</p>
         </div>
@@ -321,7 +335,7 @@
           <h4>Solutions</h4>
           <ul class="footer-links">
             <li><a href="services.html">Business Automation</a></li>
-            <li><a href="services.html">Strategy & Consulting</a></li>
+            <li><a href="services.html">Strategy &amp; Consulting</a></li>
             <li><a href="how-it-works.html">How It Works</a></li>
           </ul>
         </div>
@@ -335,7 +349,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Innov8Hub. All rights reserved.</p>
+        <p>&copy; 2026 <span class="brand-name" style="color: rgba(255,255,255,0.65);">Innov<span class="brand-8">8</span>Hub</span>. All rights reserved.</p>
       </div>
     </div>
   </footer>
