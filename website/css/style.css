@@ -589,6 +589,14 @@ textarea.form-control { min-height: 150px; resize: vertical; }
   flex-direction: column;
 }
 
+/* 4-card layout: tighter padding so they fit on standard desktop widths */
+.pricing-grid .pricing-card { padding: 2rem 1.5rem; }
+.pricing-grid .pricing-card.popular { transform: scale(1.03); }
+.pricing-grid .pricing-card.popular:hover { transform: scale(1.03) translateY(-4px); }
+.pricing-grid .pricing-features { padding-left: 0; list-style: none; }
+.pricing-grid .pricing-features li { font-size: 0.85rem; margin-bottom: 0.55rem; align-items: flex-start; }
+.pricing-grid .pricing-features li i { margin-top: 4px; flex-shrink: 0; }
+
 .pricing-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-teal);
