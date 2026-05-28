@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
       formText: 'Web Inquiry: Leaking Pipe Under Sink',
       aiReply: "Hi John! Mike's Plumbing here. Thanks for reaching out. We handle leaks all the time. Need someone out to take a look tomorrow morning?",
       userReply: 'Yes please, 9 AM would be great. Thanks for getting back to me so quickly!',
-      actionText: 'Job secured without a phone call.'
+      actionText: 'Lead captured — response sent without stopping work.'
     },
     'gardener': {
       formText: 'Web Inquiry: Lawn Mowing Quote',

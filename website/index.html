@@ -48,7 +48,7 @@
 
         <!-- ROI Calculator Widget -->
         <div id="roi-calculator" style="background: #FFFFFF; padding: 2.5rem; border-radius: var(--radius); box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid rgba(0,168,187,0.2); position: relative; z-index: 1;">
-          <h3 style="margin-bottom: 2rem; text-align: center; color: var(--text-main); font-size: 1.3rem;"><i class="fa-solid fa-calculator" style="color: var(--teal); margin-right: 8px;"></i> The Lost Revenue Calculator</h3>
+          <h3 style="margin-bottom: 2rem; text-align: center; color: var(--text-main); font-size: 1.3rem;"><i class="fa-solid fa-calculator" style="color: var(--teal); margin-right: 8px;"></i> Estimated Revenue Opportunity</h3>
 
           <div class="form-group">
             <label for="slider-inquiries" class="form-label" style="color: var(--text-main);">Missed/Late Replies (per week)</label>
@@ -65,21 +65,13 @@
 
           <div style="background: var(--bg-teal); padding: 1.5rem; border-radius: 8px; text-align: center; border: 1px solid var(--border-teal);">
 
-            <!-- Framing: loss, not price -->
-            <div style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; margin-bottom: 0.75rem;">
-              <i class="fa-solid fa-triangle-exclamation" style="color: #F59E0B; font-size: 0.85rem;"></i>
-              <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.6px;">Revenue slipping away each month</span>
-            </div>
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.5rem;">Based on your inputs, missed or delayed follow-up could represent potential revenue at risk.</p>
+            <p style="font-size: 0.73rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estimated monthly opportunity based on your inputs:</p>
+            <div id="val-total" style="font-size: 2.75rem; font-weight: 800; color: var(--teal); margin-bottom: 1.25rem; font-family: monospace; letter-spacing: -1px;">$10,000</div>
 
-            <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.4rem;">Based on your inputs, you're currently leaving approximately</p>
-            <div id="val-total" style="font-size: 2.75rem; font-weight: 800; color: var(--danger); margin-bottom: 0.25rem; font-family: monospace; letter-spacing: -1px;">$10,000</div>
-            <p style="font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin-bottom: 1.25rem;">on the table every month.</p>
-
-            <!-- Clear "not our fee" callout -->
             <div style="background: #FFFFFF; border-radius: 6px; padding: 0.85rem 1rem; border: 1px solid var(--border); margin-bottom: 1rem;">
               <p style="margin: 0; font-size: 0.88rem; color: var(--text-main); line-height: 1.5;">
-                <strong style="color: var(--teal);">This is what you're losing — not what we charge.</strong><br>
-                Our systems start from <strong>$750 setup + $149/mo</strong> to help recover it.
+                Our systems start from <strong>$750 setup + $149/month</strong> to help improve follow-up, reduce manual admin and give more enquiries a better chance of being handled.
               </p>
             </div>
 
@@ -88,7 +80,7 @@
               <ul style="padding-left: 1rem; margin-bottom: 8px; list-style-type: disc; color: var(--text-light);">
                 <li>Missed replies × Conversion Rate × Job Value × 4 weeks/mo</li>
               </ul>
-              <i class="fa-solid fa-circle-info" style="color: var(--teal);"></i> Forbes reports that 85% of missed callers won't call back, going to a competitor instead.
+              <i class="fa-solid fa-circle-info" style="color: var(--teal);"></i> This is an estimate only, not a guarantee of lost revenue or future results. Actual outcomes depend on enquiry quality, customer behaviour, pricing, availability, service area and follow-up process.
             </div>
           </div>
         </div>
@@ -108,7 +100,7 @@
       <div class="card card-dark">
         <div class="card-icon" style="background: rgba(239,68,68,0.15); color: var(--danger); border-color: rgba(239,68,68,0.3);"><i class="fa-solid fa-hourglass-end"></i></div>
         <h3 class="card-title">Slow Replies = Lost Money</h3>
-        <p style="color: rgba(255,255,255,0.65);">When you take hours to reply to an inquiry because you're busy, 50% of customers have already moved on.</p>
+        <p style="color: rgba(255,255,255,0.65);">When you take hours to reply to an enquiry because you're busy, customers often move on quickly when they can't get a timely response.</p>
       </div>
       <div class="card card-dark">
         <div class="card-icon" style="background: rgba(0,168,187,0.15); color: var(--accent); border-color: rgba(0,168,187,0.3);"><i class="fa-solid fa-file-invoice"></i></div>
@@ -362,7 +354,7 @@
         <div>
           <span class="feature-badge">High-Value Automation</span>
           <h2 style="font-size: 2.75rem; margin-bottom: 1.5rem;">Respond faster when new enquiries come in.</h2>
-          <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;">Instant lead response is one of the most impactful automations we build — and most businesses don't have it. Every enquiry gets a reply the second it comes in, even when you're under a house, on a loud job site, or switched off for the evening.</p>
+          <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;">Instant lead response is one of the most impactful automations we build — and most businesses don't have it. New enquiries can be configured to receive an automated reply quickly — even when you're under a house, on a loud job site, or switched off for the evening.</p>
 
           <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem;">
             <li style="display: flex; gap: 1rem; align-items: flex-start;">
@@ -406,7 +398,7 @@
     <div class="text-center" style="margin-bottom: 4rem;">
       <div class="teal-divider"></div>
       <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">We do the heavy lifting. You reap the rewards.</h2>
-      <p style="color: var(--text-light); font-size: 1.1rem;">A simple, fully managed process to lock in your operations.</p>
+      <p style="color: var(--text-light); font-size: 1.1rem;">A clear, managed process to help improve your operations.</p>
     </div>
 
     <div class="grid grid-3">
@@ -504,7 +496,7 @@
     <div class="grid grid-3">
       <div class="card card-teal-left" style="align-items: flex-start; text-align: left;">
         <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;"><i class="fa-solid fa-hammer" style="color: var(--teal); margin-right: 8px;"></i> Trades &amp; Maintenance</h3>
-        <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;"><strong style="color: var(--text-main);">Problem:</strong> Under a house, can't reply to a quote request.<br><br><strong style="color: var(--text-main);">Result:</strong> An automated SMS answers the customer instantly and secures the lead while you work.</p>
+        <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;"><strong style="color: var(--text-main);">Problem:</strong> Under a house, can't reply to a quote request.<br><br><strong style="color: var(--text-main);">Result:</strong> An automated SMS can be sent to the customer quickly, helping capture and follow up the lead while you work.</p>
       </div>
       <div class="card card-teal-left" style="align-items: flex-start; text-align: left; border-left-color: var(--accent);">
         <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;"><i class="fa-solid fa-leaf" style="color: var(--accent); margin-right: 8px;"></i> Gardeners &amp; Landscapers</h3>
@@ -512,7 +504,7 @@
       </div>
       <div class="card card-teal-left" style="align-items: flex-start; text-align: left; border-left-color: var(--secondary);">
         <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;"><i class="fa-solid fa-broom" style="color: var(--secondary); margin-right: 8px;"></i> Cleaners &amp; Home Services</h3>
-        <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;"><strong style="color: var(--text-main);">Problem:</strong> Managing 15 different chaotic schedules.<br><br><strong style="color: var(--text-main);">Result:</strong> Leads are automatically qualified and slotted into the correct calendar without you lifting a finger.</p>
+        <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;"><strong style="color: var(--text-main);">Problem:</strong> Managing 15 different chaotic schedules.<br><br><strong style="color: var(--text-main);">Result:</strong> Leads can be captured, organised and routed into the right workflow with less manual handling.</p>
       </div>
     </div>
   </section>
@@ -524,14 +516,14 @@
       <h2 style="color: #FFFFFF; margin-bottom: 3rem;">The hidden cost of manual operations.</h2>
       <div class="grid grid-2" style="margin-bottom: 0;">
         <div class="card" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(0,168,187,0.25);">
-          <div class="stat-number" style="margin-bottom: 0.5rem;">62%</div>
-          <p style="font-weight: 600; color: var(--accent);">of small business calls go unanswered</p>
-          <p style="color: rgba(255,255,255,0.55); font-size: 0.9rem;">When you're busy on the floor or out in the field, calls inevitably slip through the cracks.</p>
+          <div class="card-icon" style="margin: 0 auto 1.25rem; background: rgba(0,168,187,0.15); color: var(--accent); border-color: rgba(0,168,187,0.3);"><i class="fa-solid fa-phone-missed"></i></div>
+          <p style="font-weight: 600; color: var(--accent); margin-bottom: 0.75rem;">Missed calls and delayed replies are common pain points for busy service businesses.</p>
+          <p style="color: rgba(255,255,255,0.55); font-size: 0.9rem;">When you're busy on the floor or out in the field, enquiries can slip through the cracks.</p>
         </div>
         <div class="card" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(0,168,187,0.25);">
-          <div class="stat-number" style="margin-bottom: 0.5rem;">85%</div>
-          <p style="font-weight: 600; color: var(--accent);">of missed callers won't call back</p>
-          <p style="color: rgba(255,255,255,0.55); font-size: 0.9rem;">According to Forbes, those callers immediately look for a competitor instead, resulting in massive lost revenue.</p>
+          <div class="card-icon" style="margin: 0 auto 1.25rem; background: rgba(0,168,187,0.15); color: var(--accent); border-color: rgba(0,168,187,0.3);"><i class="fa-solid fa-user-xmark"></i></div>
+          <p style="font-weight: 600; color: var(--accent); margin-bottom: 0.75rem;">Customers often move on quickly when they cannot get a timely response.</p>
+          <p style="color: rgba(255,255,255,0.55); font-size: 0.9rem;">A faster first reply can give your business a better chance of converting the enquiry.</p>
         </div>
       </div>
     </div>
@@ -600,7 +592,7 @@
         <img src="img/logo-photo.png" alt="Innov8Hub" width="64" height="64" style="border-radius: 12px; object-fit: cover;">
       </div>
       <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Ready to get your evenings back?</h2>
-      <p style="font-size: 1.2rem; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Let's look at your current setup and find the "leaks" where you're losing money to manual admin. The consultation is 100% free.</p>
+      <p style="font-size: 1.2rem; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Let's look at your current setup and identify where time is being lost to manual admin. The consultation is 100% free.</p>
       <a href="contact.html" class="btn btn-teal" style="font-size: 1.125rem; padding: 1rem 2.5rem;">Book Free Automation Plan</a>
     </div>
   </section>
