@@ -106,13 +106,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ? businessSelect.options[businessSelect.selectedIndex].text
         : document.getElementById('other-business').value;
 
+      const toolsEl   = document.getElementById('tools');
+      const painEl    = document.getElementById('pain');
+      const volumeEl  = document.getElementById('volume');
+
       const payload = {
         name:     document.getElementById('name').value,
         email:    document.getElementById('email').value,
         mobile:   document.getElementById('mobile').value,
         industry: indText,
         business: busText,
-        message:  document.getElementById('message').value,
+        tools:    toolsEl    ? toolsEl.options[toolsEl.selectedIndex]?.text   || '' : '',
+        pain:     painEl     ? painEl.options[painEl.selectedIndex]?.text     || '' : '',
+        volume:   volumeEl   ? volumeEl.options[volumeEl.selectedIndex]?.text || '' : '',
+        notes:    document.getElementById('message').value,
       };
 
       try {
@@ -140,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         errorMsg.style.display = 'block';
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Book Consultation';
+        btn.textContent = 'Book Free Automation Plan';
       }
     });
   }

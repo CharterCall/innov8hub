@@ -25,7 +25,7 @@
         <a href="about.html" class="nav-link">About</a>
         <a href="pricing.html" class="nav-link">Pricing</a>
         <a href="https://app.innov8hub.io" class="client-login-link"><i class="fa-solid fa-right-to-bracket"></i> Client Login</a>
-        <a href="contact.html" class="btn btn-primary active" style="padding: 0.6rem 1.25rem;">Book Consultation</a>
+        <a href="contact.html" class="btn btn-primary active" style="padding: 0.6rem 1.25rem;">Book Free Automation Plan</a>
       </div>
       <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
     </div>
@@ -79,7 +79,7 @@
 
       <!-- Right: Form -->
       <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius); padding: 3rem; box-shadow: var(--shadow-md);">
-        <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Book a Free Consultation</h2>
+        <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Book a Free Automation Plan</h2>
 
         <form id="consultationForm">
           <div class="form-group">
@@ -120,11 +120,51 @@
             <input type="text" id="other-business" class="form-control" placeholder="Your business type">
           </div>
           <div class="form-group">
-            <label for="message" class="form-label">What takes up most of your time?</label>
-            <textarea id="message" class="form-control" placeholder="E.g., Answering phone calls while on the job, manual data entry, quoting..." required></textarea>
+            <label for="tools" class="form-label">How do you currently manage jobs and admin? <span style="color: var(--text-muted); font-weight: 400;">(optional)</span></label>
+            <select id="tools" class="form-control" style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300A8BB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto;">
+              <option value="" selected>Select your current approach</option>
+              <option value="paper">Paper / notebook</option>
+              <option value="google-calendar">Google Calendar</option>
+              <option value="spreadsheet">Spreadsheet (Excel / Sheets)</option>
+              <option value="xero-myob">Xero / MYOB</option>
+              <option value="servicem8-tradify">ServiceM8 / Tradify</option>
+              <option value="text-messages">Text messages only</option>
+              <option value="mix">Mix of tools</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pain" class="form-label">What is the biggest admin pain right now?</label>
+            <select id="pain" class="form-control" required style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300A8BB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto;">
+              <option value="" disabled selected>Select your biggest pain</option>
+              <option value="missed-leads">Missed leads or slow replies</option>
+              <option value="scheduling">Scheduling jobs</option>
+              <option value="invoicing">Creating invoices</option>
+              <option value="chasing-payments">Chasing payments</option>
+              <option value="customer-followup">Customer follow-up</option>
+              <option value="recurring-customers">Managing recurring customers</option>
+              <option value="reporting">Reporting / reconciliation</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="volume" class="form-label">How many jobs do you manage in a typical week?</label>
+            <select id="volume" class="form-control" required style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300A8BB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto;">
+              <option value="" disabled selected>Select job volume</option>
+              <option value="1-5">1–5 jobs</option>
+              <option value="6-15">6–15 jobs</option>
+              <option value="16-30">16–30 jobs</option>
+              <option value="30+">30+ jobs</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message" class="form-label">What would you like to improve first? <span style="color: var(--text-muted); font-weight: 400;">(optional)</span></label>
+            <textarea id="message" class="form-control" placeholder="E.g., I want to spend less time chasing payments, or I need a better way to track which jobs are done..."></textarea>
           </div>
 
-          <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.125rem; padding: 1rem; margin-top: 1rem;">Book Consultation</button>
+          <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem; line-height: 1.6;">You do not need to know exactly what system you need. Tell me what is taking up time, what tools you use today and where the business feels messy. I will help map the simplest next step.</p>
+
+          <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.125rem; padding: 1rem; margin-top: 0.5rem;">Book Free Automation Plan</button>
           <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 1.5rem;">We'll usually get back to you within 24 hours.</p>
 
           <div id="formSuccess" style="display:none; background: var(--accent-light); border: 1px solid var(--border-teal); border-radius: var(--radius); padding: 1rem 1.25rem; margin-top: 1rem; text-align: center;">
