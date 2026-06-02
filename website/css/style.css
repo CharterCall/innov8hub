@@ -210,6 +210,14 @@ section { padding: 5rem 0; }
   gap: 0.6rem;
 }
 
+/* Approved logo asset sizing — desktop */
+.logo .logo-full {
+  max-height: 44px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .nav-links {
   display: flex;
   gap: 1.25rem;
@@ -903,7 +911,8 @@ textarea.form-control { min-height: 150px; resize: vertical; }
   h2 { font-size: 1.45rem !important; }
 
   .logo span       { font-size: 1.15rem; }
-  .logo .logo-full { max-width: 140px !important; max-height: 40px !important; width: auto !important; height: auto !important; }
+  /* Mobile logo sizing — approved asset */
+  .logo .logo-full { max-height: 40px !important; width: auto !important; }
 
   .step-badge { width: 52px !important; height: 52px !important; font-size: 1.2rem !important; }
 
