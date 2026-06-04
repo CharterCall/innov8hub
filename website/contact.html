@@ -97,10 +97,48 @@
         </div>
       </div>
 
-      <!-- Right: Form -->
+      <!-- Right: Booking options -->
       <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius); padding: 3rem; box-shadow: var(--shadow-md);">
-        <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Book a Free Automation Plan</h2>
 
+        <!-- Dynamic heading -->
+        <h2 id="bookingHeading" style="font-size: 1.75rem; margin-bottom: 0.4rem;">Book a Free 15-Minute Call</h2>
+        <p id="bookingSubheading" style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 1.75rem;">Pick any available slot. No obligation, no sales pressure.</p>
+
+        <!-- Toggle -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2rem;">
+          <button type="button" id="optSchedule" onclick="selectBookingOption('schedule')"
+            style="padding: 1rem 0.75rem; border: 2px solid var(--teal); border-radius: 10px; background: var(--accent-light); cursor: pointer; text-align: left; transition: border-color 0.2s, background 0.2s;">
+            <div style="color: var(--teal); font-size: 1.15rem; margin-bottom: 0.3rem;"><i class="fa-solid fa-calendar-check"></i></div>
+            <div style="font-weight: 700; color: var(--text-main); font-size: 0.875rem; margin-bottom: 0.2rem;">Schedule a call</div>
+            <div style="color: var(--text-light); font-size: 0.775rem; line-height: 1.4;">Pick a free 15-min slot</div>
+          </button>
+          <button type="button" id="optContact" onclick="selectBookingOption('contact')"
+            style="padding: 1rem 0.75rem; border: 2px solid var(--border); border-radius: 10px; background: #FFFFFF; cursor: pointer; text-align: left; transition: border-color 0.2s, background 0.2s;">
+            <div style="color: var(--text-light); font-size: 1.15rem; margin-bottom: 0.3rem;"><i class="fa-solid fa-paper-plane"></i></div>
+            <div style="font-weight: 700; color: var(--text-main); font-size: 0.875rem; margin-bottom: 0.2rem;">Reach out to me</div>
+            <div style="color: var(--text-light); font-size: 0.775rem; line-height: 1.4;">I'll be in touch within 24 hrs</div>
+          </button>
+        </div>
+
+        <!-- Section A: Calendar (default) -->
+        <!-- ⚠️ Replace the Calendly URL with your actual scheduling link once your account is set up -->
+        <!-- Go to calendly.com → create a 15-min event → copy the event link and paste it below -->
+        <div id="scheduleSection">
+          <div class="calendly-inline-widget"
+            data-url="https://calendly.com/innov8hub/15min?hide_gdpr_banner=1&primary_color=00a8bb&text_color=0a1a2e"
+            style="min-width: 280px; height: 680px;">
+          </div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          <p style="text-align: center; margin-top: 1.25rem; margin-bottom: 0;">
+            <button type="button" onclick="selectBookingOption('contact')"
+              style="background: none; border: none; color: var(--teal); font-size: 0.85rem; cursor: pointer; font-weight: 600;">
+              Prefer to send your details instead? →
+            </button>
+          </p>
+        </div>
+
+        <!-- Section B: Contact form (shown when "Reach out to me" is selected) -->
+        <div id="contactSection" style="display: none;">
         <form id="consultationForm">
           <div class="form-group">
             <label for="name" class="form-label">Name</label>
@@ -194,6 +232,7 @@
             <p style="margin: 0; color: var(--danger); font-weight: 600;">Something went wrong. Please email us directly at hello@innov8hub.io</p>
           </div>
         </form>
+        </div><!-- /contactSection -->
       </div>
 
     </div>
@@ -238,5 +277,34 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    function selectBookingOption(opt) {
+      var sched    = document.getElementById('scheduleSection');
+      var contact  = document.getElementById('contactSection');
+      var btnSched = document.getElementById('optSchedule');
+      var btnCont  = document.getElementById('optContact');
+      var heading  = document.getElementById('bookingHeading');
+      var sub      = document.getElementById('bookingSubheading');
+      if (opt === 'schedule') {
+        sched.style.display       = 'block';
+        contact.style.display     = 'none';
+        btnSched.style.borderColor = 'var(--teal)';
+        btnSched.style.background  = 'var(--accent-light)';
+        btnCont.style.borderColor  = 'var(--border)';
+        btnCont.style.background   = '#FFFFFF';
+        heading.textContent = 'Book a Free 15-Minute Call';
+        sub.textContent     = 'Pick any available slot. No obligation, no sales pressure.';
+      } else {
+        sched.style.display       = 'none';
+        contact.style.display     = 'block';
+        btnSched.style.borderColor = 'var(--border)';
+        btnSched.style.background  = '#FFFFFF';
+        btnCont.style.borderColor  = 'var(--teal)';
+        btnCont.style.background   = 'var(--accent-light)';
+        heading.textContent = 'Send Your Details';
+        sub.textContent     = 'Fill in the form and we\'ll reach out within 24 hours.';
+      }
+    }
+  </script>
 </body>
 </html>
