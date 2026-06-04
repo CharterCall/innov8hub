@@ -200,9 +200,16 @@
               </button>
             </div>
 
-            <!-- Calendly embed — revealed when "Book a specific time" is selected -->
+            <!-- Calendly popup — revealed when "Book a specific time" is selected -->
             <div id="scheduleSection" style="display: none; margin-bottom: 1rem;">
-              <div id="calendlyWidget" style="min-width: 280px; height: 680px;"></div>
+              <div style="padding: 1.5rem; background: var(--accent-light); border: 1px solid var(--border-teal); border-radius: 10px; text-align: center;">
+                <i class="fa-solid fa-calendar-check" style="font-size: 1.75rem; color: var(--teal); margin-bottom: 0.75rem; display: block;"></i>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.35rem;">Ready to pick a time?</p>
+                <p style="font-size: 0.875rem; color: var(--text-light); margin-bottom: 1.25rem; line-height: 1.5;">Click the button below to open the calendar.<br>Your name and email will be pre-filled automatically.</p>
+                <button type="button" onclick="openCalendlyPopup()" class="btn btn-primary" style="padding: 0.75rem 2rem;">
+                  <i class="fa-solid fa-calendar-plus" style="margin-right: 0.5rem;"></i>Open Calendar
+                </button>
+              </div>
             </div>
           </div>
 
@@ -283,18 +290,24 @@
   <script>
     var CALENDLY_URL = 'https://calendly.com/innov8hub/15-minute-consultation?hide_gdpr_banner=1&primary_color=00a8bb&text_color=0a1a2e';
 
+    // Opens Calendly as a popup modal — avoids the iframe security restriction
+    // that blocks inline embeds on non-whitelisted domains.
     function initCalendly(name, email, attempt) {
-      var calEl = document.getElementById('calendlyWidget');
-      if (!calEl) return;
       if (typeof Calendly === 'undefined') {
         if ((attempt || 0) < 20) setTimeout(function () { initCalendly(name, email, (attempt || 0) + 1); }, 300);
         return;
       }
-      calEl.innerHTML = '';
       var url = CALENDLY_URL;
       if (name)  url += '&name='  + encodeURIComponent(name);
       if (email) url += '&email=' + encodeURIComponent(email);
-      Calendly.initInlineWidget({ url: url, parentElement: calEl });
+      Calendly.initPopupWidget({ url: url });
+    }
+
+    // Called by the "Open Calendar" button — reads current form values at click time
+    function openCalendlyPopup() {
+      var nameVal  = (document.getElementById('name').value  || '').trim();
+      var emailVal = (document.getElementById('email').value || '').trim();
+      initCalendly(nameVal, emailVal);
     }
 
     function selectBookingOption(opt) {
@@ -317,9 +330,6 @@
         autoNote.style.display       = 'block';
         validationNote.style.display = 'none';
         document.getElementById('bookingType').value = 'scheduled';
-        var nameVal  = (document.getElementById('name').value  || '').trim();
-        var emailVal = (document.getElementById('email').value || '').trim();
-        initCalendly(nameVal, emailVal);
       } else {
         sched.style.display          = 'none';
         btnSched.style.borderColor   = 'var(--border)';
