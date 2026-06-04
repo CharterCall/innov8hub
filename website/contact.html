@@ -202,10 +202,7 @@
 
             <!-- Calendly embed — revealed when "Book a specific time" is selected -->
             <div id="scheduleSection" style="display: none; margin-bottom: 1rem;">
-              <div class="calendly-inline-widget"
-                data-url="https://calendly.com/innov8hub/15-minute-consultation?hide_gdpr_banner=1&primary_color=00a8bb&text_color=0a1a2e"
-                style="min-width: 280px; height: 680px;">
-              </div>
+              <div id="calendlyWidget" style="min-width: 280px; height: 680px;"></div>
               <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
             </div>
           </div>
@@ -267,6 +264,25 @@
 
   <script src="js/main.js"></script>
   <script>
+    var CALENDLY_URL = 'https://calendly.com/innov8hub/15-minute-consultation?hide_gdpr_banner=1&primary_color=00a8bb&text_color=0a1a2e';
+
+    // Initialise the Calendly widget with prefill values.
+    // Retries every 300 ms if the Calendly script hasn't finished loading yet.
+    function initCalendly(name, email, attempt) {
+      var calEl = document.getElementById('calendlyWidget');
+      if (!calEl) return;
+      if (typeof Calendly === 'undefined') {
+        if ((attempt || 0) < 20) setTimeout(function () { initCalendly(name, email, (attempt || 0) + 1); }, 300);
+        return;
+      }
+      calEl.innerHTML = ''; // Clear any previously rendered iframe
+      Calendly.initInlineWidget({
+        url:           CALENDLY_URL,
+        parentElement: calEl,
+        prefill:       { name: name, email: email }
+      });
+    }
+
     function selectBookingOption(opt) {
       var sched       = document.getElementById('scheduleSection');
       var btnSched    = document.getElementById('optSchedule');
@@ -279,37 +295,20 @@
         btnSched.style.background  = 'var(--accent-light)';
         btnCont.style.borderColor  = 'var(--border)';
         btnCont.style.background   = '#FFFFFF';
-        submitBtn.textContent  = 'Submit My Details';
-        bookingNote.textContent = 'Pick a time above, then submit your details to confirm.';
-
-        // Pre-populate Calendly with the name and email already entered in the form
+        submitBtn.textContent      = 'Submit My Details';
+        bookingNote.textContent    = 'Pick a time above, then submit your details to confirm.';
+        // Read the values the prospect has already typed
         var nameVal  = (document.getElementById('name').value  || '').trim();
         var emailVal = (document.getElementById('email').value || '').trim();
-        var calEl    = document.querySelector('.calendly-inline-widget');
-        var baseUrl  = 'https://calendly.com/innov8hub/15-minute-consultation?hide_gdpr_banner=1&primary_color=00a8bb&text_color=0a1a2e';
-        if (calEl) {
-          if (typeof Calendly !== 'undefined') {
-            Calendly.initInlineWidget({
-              url: baseUrl,
-              parentElement: calEl,
-              prefill: { name: nameVal, email: emailVal }
-            });
-          } else {
-            // Script still loading — fall back to URL params (widget will pick them up on init)
-            var url = baseUrl;
-            if (nameVal)  url += '&name='  + encodeURIComponent(nameVal);
-            if (emailVal) url += '&email=' + encodeURIComponent(emailVal);
-            calEl.setAttribute('data-url', url);
-          }
-        }
+        initCalendly(nameVal, emailVal);
       } else {
         sched.style.display        = 'none';
         btnSched.style.borderColor = 'var(--border)';
         btnSched.style.background  = '#FFFFFF';
         btnCont.style.borderColor  = 'var(--teal)';
         btnCont.style.background   = 'var(--accent-light)';
-        submitBtn.textContent  = 'Book Free Automation Plan';
-        bookingNote.textContent = "We'll usually get back to you within 24 hours.";
+        submitBtn.textContent      = 'Book Free Automation Plan';
+        bookingNote.textContent    = "We'll usually get back to you within 24 hours.";
       }
     }
   </script>
