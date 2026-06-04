@@ -110,16 +110,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const painEl    = document.getElementById('pain');
       const volumeEl  = document.getElementById('volume');
 
+      const bookingType        = document.getElementById('bookingType')?.value        || 'reach_out';
+      const calendlyEventUri   = document.getElementById('calendlyEventUri')?.value   || '';
+      const calendlyInviteeUri = document.getElementById('calendlyInviteeUri')?.value || '';
+
       const payload = {
-        name:     document.getElementById('name').value,
-        email:    document.getElementById('email').value,
-        mobile:   document.getElementById('mobile').value,
-        industry: indText,
-        business: busText,
-        tools:    toolsEl    ? toolsEl.options[toolsEl.selectedIndex]?.text   || '' : '',
-        pain:     painEl     ? painEl.options[painEl.selectedIndex]?.text     || '' : '',
-        volume:   volumeEl   ? volumeEl.options[volumeEl.selectedIndex]?.text || '' : '',
-        notes:    document.getElementById('message').value,
+        name:                 document.getElementById('name').value,
+        email:                document.getElementById('email').value,
+        mobile:               document.getElementById('mobile').value,
+        industry:             indText,
+        business:             busText,
+        tools:                toolsEl  ? toolsEl.options[toolsEl.selectedIndex]?.text   || '' : '',
+        pain:                 painEl   ? painEl.options[painEl.selectedIndex]?.text     || '' : '',
+        volume:               volumeEl ? volumeEl.options[volumeEl.selectedIndex]?.text || '' : '',
+        notes:                document.getElementById('message').value,
+        booking_type:         bookingType,
+        calendly_event_uri:   calendlyEventUri,
+        calendly_invitee_uri: calendlyInviteeUri,
       };
 
       try {
@@ -136,6 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify(payload),
           }),
         ]);
+        const successMsgEl = document.getElementById('formSuccessMsg');
+        if (successMsgEl) {
+          successMsgEl.textContent = bookingType === 'scheduled'
+            ? 'Booking confirmed! A calendar invite has been sent to your email. We look forward to speaking with you.'
+            : "Thanks! We'll be in touch within 24 hours.";
+        }
         successMsg.style.display = 'block';
         form.reset();
         
@@ -147,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         errorMsg.style.display = 'block';
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Book Free Automation Plan';
+        if (btn.style.display !== 'none') btn.textContent = 'Book Free Automation Plan';
       }
     });
   }

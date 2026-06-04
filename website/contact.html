@@ -208,15 +208,31 @@
 
           <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem; line-height: 1.6;">You do not need to know exactly what system you need. Tell me what is taking up time, what tools you use today and where the business feels messy. I will help map the simplest next step.</p>
 
+          <!-- Submit button — visible in "Reach out" mode, hidden in "Schedule" mode -->
           <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.125rem; padding: 1rem; margin-top: 0.5rem;">Book Free Automation Plan</button>
           <p id="bookingNote" style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 1.5rem;">We'll usually get back to you within 24 hours.</p>
 
+          <!-- Auto-submit notice — shown in "Schedule" mode instead of the button -->
+          <div id="autoSubmitNote" style="display: none; background: var(--accent-light); border: 1px solid var(--border-teal); border-radius: var(--radius); padding: 1rem 1.25rem; margin-top: 0.5rem; text-align: center;">
+            <p style="margin: 0; color: var(--teal); font-size: 0.9rem;"><i class="fa-solid fa-circle-check" style="margin-right: 0.5rem;"></i>Confirm your booking above — your details will be sent to us automatically.</p>
+          </div>
+
+          <!-- Validation fallback — shown only if form has errors when Calendly fires -->
+          <div id="validationNote" style="display: none; background: #FFF7ED; border: 1px solid #FED7AA; border-radius: var(--radius); padding: 0.75rem 1rem; margin-top: 1rem;">
+            <p style="margin: 0; color: #92400E; font-size: 0.875rem;"><i class="fa-solid fa-triangle-exclamation" style="margin-right: 0.5rem;"></i>Your slot is reserved. Please fill in any missing fields above, then click Submit to complete.</p>
+          </div>
+
           <div id="formSuccess" style="display:none; background: var(--accent-light); border: 1px solid var(--border-teal); border-radius: var(--radius); padding: 1rem 1.25rem; margin-top: 1rem; text-align: center;">
-            <p style="margin: 0; color: var(--teal); font-weight: 600;">Thanks! We'll be in touch within 24 hours.</p>
+            <p id="formSuccessMsg" style="margin: 0; color: var(--teal); font-weight: 600;">Thanks! We'll be in touch within 24 hours.</p>
           </div>
           <div id="formError" style="display:none; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.3); border-radius: var(--radius); padding: 1rem 1.25rem; margin-top: 1rem; text-align: center;">
             <p style="margin: 0; color: var(--danger); font-weight: 600;">Something went wrong. Please email us directly at hello@innov8hub.io</p>
           </div>
+
+          <!-- Hidden fields: booking type + Calendly event data -->
+          <input type="hidden" id="bookingType"        value="reach_out">
+          <input type="hidden" id="calendlyEventUri"   value="">
+          <input type="hidden" id="calendlyInviteeUri" value="">
         </form>
       </div>
 
@@ -267,9 +283,6 @@
   <script>
     var CALENDLY_URL = 'https://calendly.com/innov8hub/15-minute-consultation?hide_gdpr_banner=1&primary_color=00a8bb&text_color=0a1a2e';
 
-    // Initialise the Calendly widget with name + email encoded in the URL.
-    // URL params are the only guaranteed-to-work pre-fill method for Calendly.
-    // Retries every 300 ms if the Calendly script hasn't finished loading yet.
     function initCalendly(name, email, attempt) {
       var calEl = document.getElementById('calendlyWidget');
       if (!calEl) return;
@@ -277,7 +290,7 @@
         if ((attempt || 0) < 20) setTimeout(function () { initCalendly(name, email, (attempt || 0) + 1); }, 300);
         return;
       }
-      calEl.innerHTML = ''; // Clear any previously rendered iframe
+      calEl.innerHTML = '';
       var url = CALENDLY_URL;
       if (name)  url += '&name='  + encodeURIComponent(name);
       if (email) url += '&email=' + encodeURIComponent(email);
@@ -285,33 +298,63 @@
     }
 
     function selectBookingOption(opt) {
-      var sched       = document.getElementById('scheduleSection');
-      var btnSched    = document.getElementById('optSchedule');
-      var btnCont     = document.getElementById('optContact');
-      var submitBtn   = document.getElementById('submitBtn');
-      var bookingNote = document.getElementById('bookingNote');
+      var sched          = document.getElementById('scheduleSection');
+      var btnSched       = document.getElementById('optSchedule');
+      var btnCont        = document.getElementById('optContact');
+      var submitBtn      = document.getElementById('submitBtn');
+      var bookingNote    = document.getElementById('bookingNote');
+      var autoNote       = document.getElementById('autoSubmitNote');
+      var validationNote = document.getElementById('validationNote');
+
       if (opt === 'schedule') {
-        sched.style.display        = 'block';
-        btnSched.style.borderColor = 'var(--teal)';
-        btnSched.style.background  = 'var(--accent-light)';
-        btnCont.style.borderColor  = 'var(--border)';
-        btnCont.style.background   = '#FFFFFF';
-        submitBtn.textContent      = 'Submit My Details';
-        bookingNote.textContent    = 'Pick a time above, then submit your details to confirm.';
-        // Read the values the prospect has already typed
+        sched.style.display          = 'block';
+        btnSched.style.borderColor   = 'var(--teal)';
+        btnSched.style.background    = 'var(--accent-light)';
+        btnCont.style.borderColor    = 'var(--border)';
+        btnCont.style.background     = '#FFFFFF';
+        submitBtn.style.display      = 'none';
+        bookingNote.style.display    = 'none';
+        autoNote.style.display       = 'block';
+        validationNote.style.display = 'none';
+        document.getElementById('bookingType').value = 'scheduled';
         var nameVal  = (document.getElementById('name').value  || '').trim();
         var emailVal = (document.getElementById('email').value || '').trim();
         initCalendly(nameVal, emailVal);
       } else {
-        sched.style.display        = 'none';
-        btnSched.style.borderColor = 'var(--border)';
-        btnSched.style.background  = '#FFFFFF';
-        btnCont.style.borderColor  = 'var(--teal)';
-        btnCont.style.background   = 'var(--accent-light)';
-        submitBtn.textContent      = 'Book Free Automation Plan';
-        bookingNote.textContent    = "We'll usually get back to you within 24 hours.";
+        sched.style.display          = 'none';
+        btnSched.style.borderColor   = 'var(--border)';
+        btnSched.style.background    = '#FFFFFF';
+        btnCont.style.borderColor    = 'var(--teal)';
+        btnCont.style.background     = 'var(--accent-light)';
+        submitBtn.style.display      = 'block';
+        bookingNote.style.display    = 'block';
+        autoNote.style.display       = 'none';
+        validationNote.style.display = 'none';
+        document.getElementById('bookingType').value        = 'reach_out';
+        document.getElementById('calendlyEventUri').value   = '';
+        document.getElementById('calendlyInviteeUri').value = '';
       }
     }
+
+    // Auto-submit the form when Calendly confirms the booking
+    window.addEventListener('message', function (e) {
+      if (e.origin !== 'https://calendly.com') return;
+      if (!e.data || e.data.event !== 'calendly.event_scheduled') return;
+      var p = e.data.payload || {};
+      document.getElementById('bookingType').value        = 'scheduled';
+      document.getElementById('calendlyEventUri').value   = (p.event   && p.event.uri)   || '';
+      document.getElementById('calendlyInviteeUri').value = (p.invitee && p.invitee.uri) || '';
+      var form = document.getElementById('consultationForm');
+      if (form.checkValidity()) {
+        form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+      } else {
+        // Required fields missing — show submit button as fallback
+        document.getElementById('submitBtn').style.display      = 'block';
+        document.getElementById('autoSubmitNote').style.display  = 'none';
+        document.getElementById('validationNote').style.display  = 'block';
+        form.reportValidity();
+      }
+    });
   </script>
 
 </body>
