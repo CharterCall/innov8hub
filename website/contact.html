@@ -281,6 +281,27 @@
         btnCont.style.background   = '#FFFFFF';
         submitBtn.textContent  = 'Submit My Details';
         bookingNote.textContent = 'Pick a time above, then submit your details to confirm.';
+
+        // Pre-populate Calendly with the name and email already entered in the form
+        var nameVal  = (document.getElementById('name').value  || '').trim();
+        var emailVal = (document.getElementById('email').value || '').trim();
+        var calEl    = document.querySelector('.calendly-inline-widget');
+        var baseUrl  = 'https://calendly.com/innov8hub/15-minute-consultation?hide_gdpr_banner=1&primary_color=00a8bb&text_color=0a1a2e';
+        if (calEl) {
+          if (typeof Calendly !== 'undefined') {
+            Calendly.initInlineWidget({
+              url: baseUrl,
+              parentElement: calEl,
+              prefill: { name: nameVal, email: emailVal }
+            });
+          } else {
+            // Script still loading — fall back to URL params (widget will pick them up on init)
+            var url = baseUrl;
+            if (nameVal)  url += '&name='  + encodeURIComponent(nameVal);
+            if (emailVal) url += '&email=' + encodeURIComponent(emailVal);
+            calEl.setAttribute('data-url', url);
+          }
+        }
       } else {
         sched.style.display        = 'none';
         btnSched.style.borderColor = 'var(--border)';
