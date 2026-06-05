@@ -3,10 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us | Innov8Hub</title>
-  <meta name="description" content="Book a free consultation with Innov8Hub to discuss automating your small business operations.">
+  <title>Book a Free Automation Plan | Innov8Hub</title>
+  <meta name="description" content="Tell us what's taking up time and where the business feels messy. We'll map the simplest next step — free, no-obligation.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Contact page — field helpers, optional divider, select arrows */
+    .form-hint { font-size: 0.8rem; color: var(--text-muted, #9ca3af); margin: 0.3rem 0 0; line-height: 1.45; }
+    .optional-section-header { position: relative; text-align: center; margin: 1.75rem 0 1.5rem; }
+    .optional-section-header::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--border, #e5e7eb); }
+    .optional-section-header span { position: relative; background: #fff; padding: 0 0.75rem; font-size: 0.7rem; font-weight: 700; color: var(--text-muted, #9ca3af); text-transform: uppercase; letter-spacing: 0.7px; }
+    select.form-control { appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300A8BB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto; }
+  </style>
   <!-- Calendly popup widget stylesheet (required for the popup overlay to render) -->
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
@@ -60,11 +68,11 @@
       <div>
         <div style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; background: var(--accent-light); border: 1px solid var(--border-teal); border-radius: 20px; padding: 0.3rem 0.85rem;">
           <img src="img/icon.png" alt="" width="18" height="18" style="border-radius: 4px; object-fit: cover; object-position: center;">
-          <span style="font-size: 0.78rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Get in touch</span>
+          <span style="font-size: 0.78rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Free consultation</span>
         </div>
-        <h1 style="font-size: 3rem; margin-top: 0.5rem; margin-bottom: 1.5rem;">Let's upgrade your business.</h1>
+        <h1 style="font-size: 3rem; margin-top: 0.5rem; margin-bottom: 1.5rem;">Book a Free Automation Plan</h1>
         <p style="font-size: 1.125rem; color: var(--text-light); margin-bottom: 2rem; max-width: 500px;">
-          Book a free, no-obligation consultation today. We'll chat about your current bottlenecks and map out a practical plan to automate them.
+          You do not need to know what system you need. Just tell me what is taking up time, how you manage jobs today, and where the business feels messy. I'll help map the simplest next step.
         </p>
 
         <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem;">
@@ -101,87 +109,86 @@
 
       <!-- Right: Booking form -->
       <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius); padding: 3rem; box-shadow: var(--shadow-md);">
-        <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Book a Free Automation Plan</h2>
 
         <form id="consultationForm">
+
+          <!-- ── 5 required fields ────────────────────────────────────────── -->
           <div class="form-group">
-            <label for="name" class="form-label">Name</label>
+            <label for="name" class="form-label">Name <span style="color:var(--danger)">*</span></label>
             <input type="text" id="name" class="form-control" placeholder="Jane Doe" required>
           </div>
+
           <div class="form-group">
-            <label for="email" class="form-label">Email Address</label>
+            <label for="email" class="form-label">Email address <span style="color:var(--danger)">*</span></label>
             <input type="email" id="email" class="form-control" placeholder="jane@example.com" required>
           </div>
+
           <div class="form-group">
-            <label for="mobile" class="form-label">Mobile Number</label>
-            <input type="tel" id="mobile" class="form-control" placeholder="0412 345 678" required>
-          </div>
-          <div class="form-group">
-            <label for="industry" class="form-label">Industry</label>
-            <select id="industry" class="form-control" required style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300A8BB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto;">
+            <label for="industry" class="form-label">Industry <span style="color:var(--danger)">*</span></label>
+            <select id="industry" class="form-control" required>
               <option value="" disabled selected>Select your industry</option>
-              <option value="trades">Trades &amp; Home Services</option>
-              <option value="health">Health &amp; Beauty</option>
-              <option value="professional">Professional Services</option>
-              <option value="retail">Retail &amp; E-commerce</option>
+              <option value="gardening">Gardening / landscaping</option>
+              <option value="cleaning">Cleaning</option>
+              <option value="trade">Trade / maintenance</option>
+              <option value="home-services">Home services</option>
+              <option value="professional">Professional service</option>
               <option value="other">Other</option>
             </select>
           </div>
-          <div class="form-group" id="other-industry-group" style="display: none;">
-            <label for="other-industry" class="form-label">Please specify your industry</label>
-            <input type="text" id="other-industry" class="form-control" placeholder="Your industry">
-          </div>
+
           <div class="form-group">
-            <label for="business" class="form-label">Business Type</label>
-            <select id="business" class="form-control" required style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300A8BB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto;">
-              <option value="" disabled selected>Select your industry first</option>
-            </select>
-          </div>
-          <div class="form-group" id="other-business-group" style="display: none;">
-            <label for="other-business" class="form-label">Please specify your business type</label>
-            <input type="text" id="other-business" class="form-control" placeholder="Your business type">
-          </div>
-          <div class="form-group">
-            <label for="tools" class="form-label">How do you currently manage jobs and admin? <span style="color: var(--text-muted); font-weight: 400;">(optional)</span></label>
-            <select id="tools" class="form-control" style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300A8BB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto;">
-              <option value="" selected>Select your current approach</option>
-              <option value="paper">Paper / notebook</option>
-              <option value="google-calendar">Google Calendar</option>
-              <option value="spreadsheet">Spreadsheet (Excel / Sheets)</option>
-              <option value="xero-myob">Xero / MYOB</option>
-              <option value="servicem8-tradify">ServiceM8 / Tradify</option>
-              <option value="text-messages">Text messages only</option>
-              <option value="mix">Mix of tools</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="pain" class="form-label">What is the biggest admin pain right now?</label>
-            <select id="pain" class="form-control" required style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300A8BB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto;">
-              <option value="" disabled selected>Select your biggest pain</option>
+            <label for="pain" class="form-label">Biggest admin pain right now <span style="color:var(--danger)">*</span></label>
+            <select id="pain" class="form-control" required>
+              <option value="" disabled selected>What takes up most of your time?</option>
               <option value="missed-leads">Missed leads or slow replies</option>
               <option value="scheduling">Scheduling jobs</option>
               <option value="invoicing">Creating invoices</option>
               <option value="chasing-payments">Chasing payments</option>
               <option value="customer-followup">Customer follow-up</option>
-              <option value="recurring-customers">Managing recurring customers</option>
+              <option value="recurring-customers">Tracking recurring customers</option>
               <option value="reporting">Reporting / reconciliation</option>
-              <option value="not-sure">Not sure yet</option>
+              <option value="not-sure">I'm not sure yet</option>
             </select>
           </div>
+
           <div class="form-group">
-            <label for="volume" class="form-label">How many jobs do you manage in a typical week?</label>
-            <select id="volume" class="form-control" required style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300A8BB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem top 50%; background-size: 0.65rem auto;">
-              <option value="" disabled selected>Select job volume</option>
-              <option value="1-5">1&ndash;5 jobs</option>
-              <option value="6-15">6&ndash;15 jobs</option>
-              <option value="16-30">16&ndash;30 jobs</option>
-              <option value="30+">30+ jobs</option>
+            <label for="volume" class="form-label">Jobs per week <span style="color:var(--danger)">*</span></label>
+            <select id="volume" class="form-control" required>
+              <option value="" disabled selected>How many jobs do you typically run?</option>
+              <option value="1-5">1–5</option>
+              <option value="6-15">6–15</option>
+              <option value="16-30">16–30</option>
+              <option value="30+">30+</option>
             </select>
           </div>
+
+          <!-- ── Optional section ────────────────────────────────────────── -->
+          <div class="optional-section-header"><span>Optional — helpful context</span></div>
+
           <div class="form-group">
-            <label for="message" class="form-label">What would you like to improve first? <span style="color: var(--text-muted); font-weight: 400;">(optional)</span></label>
-            <textarea id="message" class="form-control" placeholder="E.g., I want to spend less time chasing payments, or I need a better way to track which jobs are done..."></textarea>
+            <label for="mobile" class="form-label">Mobile number <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+            <input type="tel" id="mobile" class="form-control" placeholder="0412 345 678">
+            <p class="form-hint">Only used if you'd prefer a quick call or SMS follow-up.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="tools" class="form-label">How do you currently manage jobs and admin? <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+            <select id="tools" class="form-control">
+              <option value="" selected>Select your current approach</option>
+              <option value="paper">Paper / notebook</option>
+              <option value="google-calendar">Google Calendar</option>
+              <option value="spreadsheet">Spreadsheet (Excel / Sheets)</option>
+              <option value="xero-myob">Xero / MYOB</option>
+              <option value="servicem8-tradify">ServiceM8 / Tradify / similar</option>
+              <option value="text-messages">Text messages only</option>
+              <option value="mix">Mix of tools</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Anything else I should know? <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+            <textarea id="message" class="form-control" placeholder="Example: I want to stop chasing unpaid invoices, organise recurring customers, or respond faster to enquiries."></textarea>
           </div>
 
           <!-- How to book -->
@@ -214,8 +221,6 @@
               </div>
             </div>
           </div>
-
-          <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem; line-height: 1.6;">You do not need to know exactly what system you need. Tell me what is taking up time, what tools you use today and where the business feels messy. I will help map the simplest next step.</p>
 
           <!-- Submit button — visible in "Reach out" mode, hidden in "Schedule" mode -->
           <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.125rem; padding: 1rem; margin-top: 0.5rem;">Book Free Automation Plan</button>

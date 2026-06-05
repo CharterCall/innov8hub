@@ -3,84 +3,8 @@ const N8N_URL    = 'https://n8n.chartercall.com.au/webhook/innov8hub-lead';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Cascading dropdown logic
+  // Industry select (simple — no cascading)
   const industrySelect = document.getElementById('industry');
-  const businessSelect = document.getElementById('business');
-  const otherIndustryGroup = document.getElementById('other-industry-group');
-  const otherBusinessGroup = document.getElementById('other-business-group');
-
-  const industryData = {
-    trades: [
-      { value: 'plumbing', text: 'Plumbing' },
-      { value: 'electrical', text: 'Electrical' },
-      { value: 'carpentry', text: 'Carpentry' },
-      { value: 'hvac', text: 'HVAC' },
-      { value: 'landscaping', text: 'Landscaping/Gardening' },
-      { value: 'cleaning', text: 'Cleaning Services' },
-      { value: 'other', text: 'Other Trades' }
-    ],
-    health: [
-      { value: 'clinic', text: 'Medical/Dental Clinic' },
-      { value: 'salon', text: 'Hair/Beauty Salon' },
-      { value: 'fitness', text: 'Gym/Fitness Center' },
-      { value: 'massage', text: 'Massage/Physio' },
-      { value: 'other', text: 'Other Health & Beauty' }
-    ],
-    professional: [
-      { value: 'accounting', text: 'Accounting/Finance' },
-      { value: 'legal', text: 'Legal Services' },
-      { value: 'consulting', text: 'Consulting' },
-      { value: 'realestate', text: 'Real Estate' },
-      { value: 'other', text: 'Other Professional' }
-    ],
-    retail: [
-      { value: 'ecommerce', text: 'Online Store (E-commerce)' },
-      { value: 'brickmortar', text: 'Brick & Mortar Store' },
-      { value: 'wholesale', text: 'Wholesale/Distribution' },
-      { value: 'other', text: 'Other Retail' }
-    ]
-  };
-
-  if (industrySelect && businessSelect) {
-    industrySelect.addEventListener('change', function() {
-      const selectedIndustry = this.value;
-      
-      if (selectedIndustry === 'other') {
-        otherIndustryGroup.style.display = 'block';
-        document.getElementById('other-industry').required = true;
-        
-        businessSelect.innerHTML = '<option value="other" selected>Other</option>';
-        otherBusinessGroup.style.display = 'block';
-        document.getElementById('other-business').required = true;
-      } else {
-        otherIndustryGroup.style.display = 'none';
-        document.getElementById('other-industry').required = false;
-        
-        businessSelect.innerHTML = '<option value="" disabled selected>Select your business type</option>';
-        if (industryData[selectedIndustry]) {
-          industryData[selectedIndustry].forEach(item => {
-            const option = document.createElement('option');
-            option.value = item.value;
-            option.textContent = item.text;
-            businessSelect.appendChild(option);
-          });
-        }
-        
-        otherBusinessGroup.style.display = 'none';
-        document.getElementById('other-business').required = false;
-      }
-    });
-
-    businessSelect.addEventListener('change', function() {
-      if (this.value === 'other') {
-        otherBusinessGroup.style.display = 'block';
-        document.getElementById('other-business').required = true;
-      } else {
-        otherBusinessGroup.style.display = 'none';
-        document.getElementById('other-business').required = false;
-      }
-    });
-  }
 
   // Contact form → Google Sheet
   const form = document.getElementById('consultationForm');
@@ -96,19 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
       successMsg.style.display = 'none';
       errorMsg.style.display = 'none';
 
-      const indVal = document.getElementById('industry').value;
-      const indText = indVal !== 'other' && industrySelect.options[industrySelect.selectedIndex] 
-        ? industrySelect.options[industrySelect.selectedIndex].text 
-        : document.getElementById('other-industry').value;
-
-      const busVal = document.getElementById('business').value;
-      const busText = busVal !== 'other' && businessSelect.options[businessSelect.selectedIndex]
-        ? businessSelect.options[businessSelect.selectedIndex].text
-        : document.getElementById('other-business').value;
-
-      const toolsEl   = document.getElementById('tools');
-      const painEl    = document.getElementById('pain');
-      const volumeEl  = document.getElementById('volume');
+      const toolsEl  = document.getElementById('tools');
+      const painEl   = document.getElementById('pain');
+      const volumeEl = document.getElementById('volume');
 
       const bookingType        = document.getElementById('bookingType')?.value        || 'reach_out';
       const calendlyEventUri   = document.getElementById('calendlyEventUri')?.value   || '';
@@ -117,13 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const payload = {
         name:                 document.getElementById('name').value,
         email:                document.getElementById('email').value,
-        mobile:               document.getElementById('mobile').value,
-        industry:             indText,
-        business:             busText,
-        tools:                toolsEl  ? toolsEl.options[toolsEl.selectedIndex]?.text   || '' : '',
+        mobile:               document.getElementById('mobile')?.value || '',
+        industry:             industrySelect?.options[industrySelect.selectedIndex]?.text || '',
         pain:                 painEl   ? painEl.options[painEl.selectedIndex]?.text     || '' : '',
         volume:               volumeEl ? volumeEl.options[volumeEl.selectedIndex]?.text || '' : '',
-        notes:                document.getElementById('message').value,
+        tools:                toolsEl  ? toolsEl.options[toolsEl.selectedIndex]?.text   || '' : '',
+        notes:                document.getElementById('message')?.value || '',
         booking_type:         bookingType,
         calendly_event_uri:   calendlyEventUri,
         calendly_invitee_uri: calendlyInviteeUri,
@@ -151,11 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         successMsg.style.display = 'block';
         form.reset();
-        
-        // Reset dynamic fields
-        if (otherIndustryGroup) otherIndustryGroup.style.display = 'none';
-        if (otherBusinessGroup) otherBusinessGroup.style.display = 'none';
-        if (businessSelect) businessSelect.innerHTML = '<option value="" disabled selected>Select your industry first</option>';
       } catch {
         errorMsg.style.display = 'block';
       } finally {
